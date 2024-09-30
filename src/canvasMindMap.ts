@@ -243,14 +243,16 @@ export default class CanvasMindMap extends Plugin {
 
 						const addCard = (parentNode: any, node: TreeNode) => {
 							node.children.forEach((child, index) => {
+								const content = item.text;
+							if (item.content) content + "\n" + item.content;
 								const newNode = createChildCardNode(canvas, parentNode, child.text, "#" + child, nodeGroupY - direction * (parentNode.height * 0.6 + 20) * index);
 								addCard(newNode, child)
 							});
 						};
 
 						h1list.forEach((item, index) => {
-							const content = item.text
-							if (item.content) content + "\n" + item.content
+							const content = item.text;
+							if (item.content) content + "\n" + item.content;
 							const newCard = createChildCardNode(canvas, currentSelectionItem, content, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
 							addCard(newCard, item)
 						});
