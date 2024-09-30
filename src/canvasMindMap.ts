@@ -233,7 +233,7 @@ export default class CanvasMindMap extends Plugin {
 						const currentSelectionItem = currentSelection.values().next().value;
 						if (currentSelection == undefined) return new Notice("no selected card");
 						console.log(currentSelectionItem)
-						const h1list = parseMarkdownListToTree(currentSelection.text)
+						const h1list = parseMarkdownListToTree(currentSelectionItem.text)
 						if (h1list.length === 0) return new Notice("no selected card");
 
 						const nodeGroupHeight = (currentSelectionItem.height * 0.6 + 20) * h1list.length;
