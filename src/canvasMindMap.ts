@@ -235,9 +235,9 @@ export default class CanvasMindMap extends Plugin {
 						console.log("ACT")
 						const h1list = parseMarkdownListToTree(currentSelection.text)
 
-						if (currentFileHeadingH1.length === 0) return;
+						if (h1list.length === 0) return;
 
-						const nodeGroupHeight = (currentSelectionItem.height * 0.6 + 20) * currentFileHeadingH1.length;
+						const nodeGroupHeight = (currentSelectionItem.height * 0.6 + 20) * h1list.length;
 						let direction = -1;
 						const nodeGroupY = currentSelectionItem.y + currentSelectionItem.height / 2 + (nodeGroupHeight / 2) * direction;
 
