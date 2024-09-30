@@ -231,6 +231,7 @@ export default class CanvasMindMap extends Plugin {
 						}
 
 						const currentSelectionItem = currentSelection.values().next().value;
+						if (!currentSelection)
 						console.log(currentSelectionItem.text)
 						const h1list = parseMarkdownListToTree(currentSelection.text)
 						if (h1list.length === 0) return new Notice("no selected card");
