@@ -132,7 +132,7 @@ export const addNode = (canvas: Canvas, id: string, {
 			node.text = content;
 			break;
 		case 'file':
-			console.
+			console.log(node)
 			node.file = content;
 			if (subpath) node.subpath = subpath;
 			break;
