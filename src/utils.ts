@@ -49,6 +49,13 @@ export const createChildFileNode = (canvas: any, parentNode: any, file: TFile, p
 
 	return node;
 };
+function isWikiLink(input: string): boolean {
+	// Regex to match a wikilink format: [[content]]
+	const wikiLinkRegex = /^\[\[.*?\]\]$/;
+
+	// Test if the input matches the wikilink pattern
+	return wikiLinkRegex.test(input);
+}
 
 export const createChildCardNode = (canvas: any, parentNode: any, content: string, path: string, y: number) => {
 	const node = addNode(
@@ -58,7 +65,7 @@ export const createChildCardNode = (canvas: any, parentNode: any, content: strin
 			y: y,
 			width: parentNode.width,
 			height: parentNode.height * 0.6,
-			type: 'text',
+			type:  'text',
 			content: content,
 			subpath: path,
 		}
