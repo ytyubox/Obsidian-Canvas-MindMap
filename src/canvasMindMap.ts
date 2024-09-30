@@ -1,6 +1,6 @@
 import { Canvas, CanvasEdge, CanvasNode, ItemView, Plugin, requireApiVersion, SettingTab, TFile } from 'obsidian';
 import { around } from "monkey-around";
-import { addEdge, addNode, buildTrees, createChildFileNode, random } from "./utils";
+import { addEdge, addNode, buildTrees, createChildFileNode, random, createChildCardNode } from "./utils";
 import { DEFAULT_SETTINGS, MindMapSettings, MindMapSettingTab } from "./mindMapSettings";
 import { CanvasEdgeData } from "obsidian/canvas";
 
