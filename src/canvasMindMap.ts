@@ -234,9 +234,6 @@ export default class CanvasMindMap extends Plugin {
 						console.log(currentSelectionItem.text)
 						console.log("ACT")
 
-
-						if (!currentFileHeadings) return;
-
 						const currentFileHeadingH1 = currentFileHeadings.filter(heading => heading.level === 1);
 						if (currentFileHeadingH1.length === 0) return;
 
