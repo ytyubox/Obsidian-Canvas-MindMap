@@ -685,40 +685,72 @@ export default class CanvasMindMap extends Plugin {
 		await this.saveData(this.settings);
 	}
 }
-
 interface TreeNode {
 	text: string;
+	content: string | null; // Content associated with the list item
 	children: TreeNode[];
 }
 
+function isListMarker(line: string): boolean {
+	// Regex to match list markers: -, *, +, or numbers followed by a period
+	return /^\s*([-*+]|\d+\.)\s+/.test(line);
+}
+
 function parseMarkdownListToTree(markdown: string): TreeNode[] {
-	const lines = markdown.split("\n");
+	const lines = markdown.split('\n');
 	const root: TreeNode[] = [];
 	const stack: { level: number; nodes: TreeNode[] }[] = [{ level: -1, nodes: root }];
+	let currentNode: TreeNode | null = null;
 
 	lines.forEach(line => {
 		// Ignore empty lines
 		if (line.trim().length === 0) return;
 
-		// Determine the current level (indentation level, 2 spaces or a tab)
-		const trimmedLine = line.trim();
-		const level = line.length - trimmedLine.length;
+		if (isListMarker(line)) {
+			// This line is a list item
+			const trimmedLine = line.trim();
+			const indentationLevel = line.length - trimmedLine.length;
 
-		// Create a new node
-		const newNode: TreeNode = { text: trimmedLine.replace(/^[-*+]|\d+\.\s*/, '').trim(), children: [] };
+			// Create a new list item node
+			const newNode: TreeNode = {
+				text: trimmedLine.replace(/^[-*+]|\d+\.\s*/, '').trim(),
+				content: null, // No content initially
+				children: []
+			};
 
-		// Adjust the stack to the current level
-		while (stack.length > 0 && stack[stack.length - 1].level >= level) {
-			stack.pop();
+			// Adjust the stack to the current level
+			while (stack.length > 0 && stack[stack.length - 1].level >= indentationLevel) {
+				stack.pop();
+			}
+
+			// Add the new node as a child of the current level's parent node
+			const parentNode = stack[stack.length - 1].nodes;
+			parentNode.push(newNode);
+
+			// Set this node as the current node and push it onto the stack
+			currentNode = newNode;
+			stack.push({ level: indentationLevel, nodes: newNode.children });
+
+		} else if (currentNode) {
+			// This line is content for the last list item
+			currentNode.content = (currentNode.content ? currentNode.content + '\n' : '') + line.trim();
 		}
-
-		// Add the new node as a child of the current level node
-		const parentNode = stack[stack.length - 1].nodes;
-		parentNode.push(newNode);
-
-		// Push this node onto the stack as the most recent parent
-		stack.push({ level, nodes: newNode.children });
 	});
 
 	return root;
 }
+
+// Example usage:
+const markdownList = `
+- Item 1
+  Content of item 1
+  - Item 1.1
+    Content of item 1.1
+- Item 2
+  Content of item 2
+  - Item 2.1
+    - Item 2.1.1
+`;
+
+const tree = parseMarkdownListToTree(markdownList);
+console.log(JSON.stringify(tree, null, 2));
