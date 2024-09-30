@@ -233,7 +233,7 @@ export default class CanvasMindMap extends Plugin {
 						const currentSelectionItem = currentSelection.values().next().value;
 						console.log(currentSelectionItem.text)
 						console.log("ACT")
-						
+
 
 						const currentFileHeadingH1 = currentFileHeadings.filter(heading => heading.level === 1);
 						if (currentFileHeadingH1.length === 0) return;
@@ -677,4 +677,41 @@ export default class CanvasMindMap extends Plugin {
 	async saveSettings(): Promise<void> {
 		await this.saveData(this.settings);
 	}
+}
+
+interface TreeNode {
+	text: string;
+	children: TreeNode[];
+}
+
+function parseMarkdownListToTree(markdown: string): TreeNode[] {
+	const lines = markdown.split("\n");
+	const root: TreeNode[] = [];
+	const stack: { level: number; nodes: TreeNode[] }[] = [{ level: -1, nodes: root }];
+
+	lines.forEach(line => {
+		// Ignore empty lines
+		if (line.trim().length === 0) return;
+
+		// Determine the current level (indentation level, 2 spaces or a tab)
+		const trimmedLine = line.trim();
+		const level = line.length - trimmedLine.length;
+
+		// Create a new node
+		const newNode: TreeNode = { text: trimmedLine.replace(/^[-*+]|\d+\.\s*/, '').trim(), children: [] };
+
+		// Adjust the stack to the current level
+		while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+			stack.pop();
+		}
+
+		// Add the new node as a child of the current level node
+		const parentNode = stack[stack.length - 1].nodes;
+		parentNode.push(newNode);
+
+		// Push this node onto the stack as the most recent parent
+		stack.push({ level, nodes: newNode.children });
+	});
+
+	return root;
 }
