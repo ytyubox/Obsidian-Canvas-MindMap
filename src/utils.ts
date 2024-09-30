@@ -56,7 +56,16 @@ function isWikiLink(input: string): boolean {
 	// Test if the input matches the wikilink pattern
 	return wikiLinkRegex.test(input);
 }
+function extractWikiLinkContent(input: string): string | null {
+	// Regex to match and capture the content inside [[content]]
+	const wikiLinkRegex = /^\[\[(.*?)\]\]$/;
 
+	// Use regex to extract the content inside the brackets
+	const match = input.match(wikiLinkRegex);
+
+	// Return the captured content or null if no match
+	return match ? match[1] : null;
+}
 export const createChildCardNode = (canvas: any, parentNode: any, content: string, path: string, y: number) => {
 	const node = addNode(
 		canvas, random(16),
@@ -66,7 +75,7 @@ export const createChildCardNode = (canvas: any, parentNode: any, content: strin
 			width: parentNode.width,
 			height: parentNode.height * 0.6,
 			type: isWikiLink(content) ? 'file' : 'text',
-			content: isWikiLink(content) ? 'file' : content,
+			content: extractWikiLinkContent(content) ? 'file' : content,
 			subpath: path,
 		}
 	);
