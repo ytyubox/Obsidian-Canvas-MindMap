@@ -50,7 +50,7 @@ export const createChildFileNode = (canvas: any, parentNode: any, file: TFile, p
 	return node;
 };
 
-export const createChildCardNode = (canvas: any, parentNode: any, file: TFile, path: string, y: number) => {
+export const createChildCardNode = (canvas: any, parentNode: any, content: string, path: string, y: number) => {
 	const node = addNode(
 		canvas, random(16),
 		{
