@@ -1,4 +1,4 @@
-import { Canvas, CanvasEdge, CanvasNode, ItemView, Plugin, requireApiVersion, SettingTab, TFile } from 'obsidian';
+import { Canvas, CanvasEdge, CanvasNode, ItemView, Notice, Plugin, requireApiVersion, SettingTab, TFile } from 'obsidian';
 import { around } from "monkey-around";
 import { addEdge, addNode, buildTrees, createChildFileNode, random, createChildCardNode } from "./utils";
 import { DEFAULT_SETTINGS, MindMapSettings, MindMapSettingTab } from "./mindMapSettings";
@@ -233,8 +233,7 @@ export default class CanvasMindMap extends Plugin {
 						const currentSelectionItem = currentSelection.values().next().value;
 						console.log(currentSelectionItem.text)
 						const h1list = parseMarkdownListToTree(currentSelection.text)
-
-						if (h1list.length === 0) return;
+						if (h1list.length === 0) return new Notice;
 
 						const nodeGroupHeight = (currentSelectionItem.height * 0.6 + 20) * h1list.length;
 						let direction = -1;
