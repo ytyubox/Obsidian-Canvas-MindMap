@@ -240,10 +240,12 @@ export default class CanvasMindMap extends Plugin {
 						const nodeGroupHeight = (currentSelectionItem.height * 0.6 + 20) * h1list.length;
 						let direction = -1;
 						const nodeGroupY = currentSelectionItem.y + currentSelectionItem.height / 2 + (nodeGroupHeight / 2) * direction;
+
+						const addCard = (node: TreeNode) =>  {
+							
 						
-						const addCard = (node: TreeNode) => 
 							createChildCardNode(canvas, currentSelectionItem, node.text, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
-						
+						+
 
 						h1list.forEach((item, index) => {
 							createChildCardNode(canvas, currentSelectionItem, item.text, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
