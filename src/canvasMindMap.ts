@@ -233,7 +233,7 @@ export default class CanvasMindMap extends Plugin {
 						const currentSelectionItem = currentSelection.values().next().value;
 						console.log(currentSelectionItem.text)
 						console.log("ACT")
-						const h1 = 
+						const h1list = parseMarkdownListToTree()
 
 						const currentFileHeadingH1 = currentFileHeadings.filter(heading => heading.level === 1);
 						if (currentFileHeadingH1.length === 0) return;
