@@ -60,7 +60,7 @@ export const createChildCardNode = (canvas: any, parentNode: any, content: strin
 			height: parentNode.height * 0.6,
 
 			type: 'file',
-			content: file.path,
+			content: content,
 			subpath: path,
 		}
 	);

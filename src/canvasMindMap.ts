@@ -242,7 +242,7 @@ export default class CanvasMindMap extends Plugin {
 						const nodeGroupY = currentSelectionItem.y + currentSelectionItem.height / 2 + (nodeGroupHeight / 2) * direction;
 
 						h1list.forEach((item, index) => {
-							createChildFileNode(canvas, currentSelectionItem, currentSelectionItemFile, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
+							createChildFileNode(canvas, currentSelectionItem, item, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
 						});
 					}
 					return true;
