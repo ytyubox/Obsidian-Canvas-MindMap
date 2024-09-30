@@ -64,7 +64,7 @@ function extractWikiLinkContent(input: string): string | null {
 	const match = input.match(wikiLinkRegex);
 
 	// Return the captured content or null if no match
-	return match ? match[1] : null;
+	return match ? match[1] + '.md' : null;
 }
 export const createChildCardNode = (canvas: any, parentNode: any, content: string, path: string, y: number) => {
 	const node = addNode(
