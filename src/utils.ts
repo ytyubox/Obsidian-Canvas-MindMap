@@ -75,7 +75,7 @@ export const createChildCardNode = (canvas: any, parentNode: any, content: strin
 			width: parentNode.width,
 			height: parentNode.height * 0.6,
 			type: isWikiLink(content) ? 'file' : 'text',
-			content: extractWikiLinkContent(content) ? 'file' : content,
+			content: extractWikiLinkContent(content) ?? content,
 			subpath: path,
 		}
 	);
