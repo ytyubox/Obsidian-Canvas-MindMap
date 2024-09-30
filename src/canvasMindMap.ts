@@ -211,9 +211,6 @@ export default class CanvasMindMap extends Plugin {
 		await this.loadSettings();
 	}
 
-	addCard(node: TreeNode) {
-		createChildCardNode(canvas, currentSelectionItem, item.text, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
-	}
 
 	registerCommands() {
 		this.addCommand({
@@ -243,7 +240,9 @@ export default class CanvasMindMap extends Plugin {
 						const nodeGroupHeight = (currentSelectionItem.height * 0.6 + 20) * h1list.length;
 						let direction = -1;
 						const nodeGroupY = currentSelectionItem.y + currentSelectionItem.height / 2 + (nodeGroupHeight / 2) * direction;
-
+						addCard(node: TreeNode) {
+							createChildCardNode(canvas, currentSelectionItem, item.text, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
+						}
 
 						h1list.forEach((item, index) => {
 							createChildCardNode(canvas, currentSelectionItem, item.text, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
