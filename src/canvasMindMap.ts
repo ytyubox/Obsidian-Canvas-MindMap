@@ -212,7 +212,7 @@ export default class CanvasMindMap extends Plugin {
 	}
 
 	addCard(node: TreeNode) {
-
+		createChildCardNode(canvas, currentSelectionItem, item.text, "#" + item, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
 	}
 
 	registerCommands() {
