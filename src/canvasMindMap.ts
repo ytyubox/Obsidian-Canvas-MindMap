@@ -233,7 +233,7 @@ export default class CanvasMindMap extends Plugin {
 						const currentSelectionItem = currentSelection.values().next().value;
 						console.log(currentSelectionItem.text)
 						if (!currentSelectionItem.filePath) return;
-
+						console.log("ACT")
 						const currentSelectionItemFile = currentSelectionItem.file as TFile;
 						if (!(currentSelectionItemFile.extension === "md")) return;
 
