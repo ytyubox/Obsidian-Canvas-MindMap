@@ -685,6 +685,7 @@ export default class CanvasMindMap extends Plugin {
 		await this.saveData(this.settings);
 	}
 }
+
 interface TreeNode {
 	text: string;
 	content: string | null; // Content associated with the list item
@@ -739,18 +740,3 @@ function parseMarkdownListToTree(markdown: string): TreeNode[] {
 
 	return root;
 }
-
-// Example usage:
-const markdownList = `
-- Item 1
-  Content of item 1
-  - Item 1.1
-    Content of item 1.1
-- Item 2
-  Content of item 2
-  - Item 2.1
-    - Item 2.1.1
-`;
-
-const tree = parseMarkdownListToTree(markdownList);
-console.log(JSON.stringify(tree, null, 2));
