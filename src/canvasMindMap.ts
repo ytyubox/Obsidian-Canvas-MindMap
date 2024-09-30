@@ -27,7 +27,7 @@ const navigate = (canvas: Canvas, direction: string) => {
 
 	const selectedItem = currentSelection.values().next().value as CanvasNode;
 	const viewportNodes = canvas.getViewportNodes();
-	const {x, y, width, height} = selectedItem;
+	const { x, y, width, height } = selectedItem;
 
 	canvas.deselectAll();
 
@@ -68,13 +68,13 @@ const createFloatingNode = (canvas: any, direction: string) => {
 
 	const tempChildNode = addNode(
 		canvas, random(16), {
-			x: x,
-			y: y,
-			width: node.width,
-			height: node.height,
-			type: 'text',
-			content: "",
-		}
+		x: x,
+		y: y,
+		width: node.width,
+		height: node.height,
+		type: 'text',
+		content: "",
+	}
 	);
 
 	canvas?.requestSave();
@@ -95,13 +95,13 @@ const createFloatingNode = (canvas: any, direction: string) => {
 const childNode = async (canvas: Canvas, parentNode: CanvasNode, y: number) => {
 	let tempChildNode = addNode(
 		canvas, random(16), {
-			x: parentNode.x + parentNode.width + 200,
-			y: y,
-			width: parentNode.width,
-			height: parentNode.height,
-			type: 'text',
-			content: "",
-		}
+		x: parentNode.x + parentNode.width + 200,
+		y: y,
+		width: parentNode.width,
+		height: parentNode.height,
+		type: 'text',
+		content: "",
+	}
 	);
 	await createEdge(parentNode, tempChildNode, canvas);
 
@@ -179,7 +179,7 @@ const createSiblingNode = async (canvas: Canvas, ignored: boolean) => {
 	if (nodes.length > 1 && nodes[0].x === nodes[1]?.x) {
 		nodes.forEach((node: CanvasNode, index: number) => {
 			const yPos = index === 0 ? parentNode.y + parentNode.height / 2 - totalHeight / 2 : nodes[index - 1].y + nodes[index - 1].height + 20;
-			node.moveTo({x: selectedNode.x, y: yPos});
+			node.moveTo({ x: selectedNode.x, y: yPos });
 		});
 	}
 
@@ -212,6 +212,49 @@ export default class CanvasMindMap extends Plugin {
 	}
 
 	registerCommands() {
+		this.addCommand({
+			id: 'split-card-into-mindmap',
+			name: 'Split card into mindmap',
+			checkCallback: (checking: boolean) => {
+				// Conditions to check
+				const canvasView = app.workspace.getActiveViewOfType(ItemView);
+				if (canvasView?.getViewType() === "canvas") {
+					// If checking is true, we're simply "checking" if the command can be run.
+					// If checking is false, then we want to actually perform the operation.
+
+					if (!checking) {
+						// @ts-ignore
+						const canvas = canvasView?.canvas;
+						const currentSelection = canvas?.selection;
+						if (currentSelection.size > 1) {
+							return;
+						}
+
+						const currentSelectionItem = currentSelection.values().next().value;
+						console.log(currentSelectionItem)
+						if (!currentSelectionItem.filePath) return;
+
+						const currentSelectionItemFile = currentSelectionItem.file as TFile;
+						if (!(currentSelectionItemFile.extension === "md")) return;
+
+						const currentFileHeadings = app.metadataCache.getFileCache(currentSelectionItemFile)?.headings;
+						if (!currentFileHeadings) return;
+
+						const currentFileHeadingH1 = currentFileHeadings.filter(heading => heading.level === 1);
+						if (currentFileHeadingH1.length === 0) return;
+
+						const nodeGroupHeight = (currentSelectionItem.height * 0.6 + 20) * currentFileHeadingH1.length;
+						let direction = -1;
+						const nodeGroupY = currentSelectionItem.y + currentSelectionItem.height / 2 + (nodeGroupHeight / 2) * direction;
+
+						currentFileHeadingH1.forEach((item, index) => {
+							createChildFileNode(canvas, currentSelectionItem, currentSelectionItemFile, "#" + item.heading, nodeGroupY - direction * (currentSelectionItem.height * 0.6 + 20) * index);
+						});
+					}
+					return true;
+				}
+			}
+		});
 		this.addCommand({
 			id: 'split-heading-into-mindmap',
 			name: 'Split Heading into mindmap based on H1',
