@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"minAppVersion": "1.4.0",
 	"description": "A plugin to make  canvas work like a mindmap.",
-	"author": "Boninall",
-	"authorUrl": "https://github.com/yt",
+	"author": "ytyubox",
+	"authorUrl": "https://github.com/ytyubox",
 	"isDesktopOnly": true
 }
