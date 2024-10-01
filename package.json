@@ -1,7 +1,7 @@
 {
-	"name": "canvas-miindmap",
-	"version": "1.0.2",
-	"description": "A plugin to make your canvas work like a mindmap.",
+	"name": "canvas-help",
+	"version": "1.0.0",
+	"description": "A plugin to make your canvas work.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
