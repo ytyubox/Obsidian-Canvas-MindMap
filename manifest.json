@@ -3,7 +3,7 @@
 	"name": "Canvas help",
 	"version": "1.0.0",
 	"minAppVersion": "1.4.0",
-	"description": "A plugin to make  canvas work like a mindmap.",
+	"description": "A plugin to help canvas work.",
 	"author": "ytyubox",
 	"authorUrl": "https://github.com/ytyubox",
 	"isDesktopOnly": true
