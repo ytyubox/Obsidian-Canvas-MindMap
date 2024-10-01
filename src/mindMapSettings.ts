@@ -85,21 +85,14 @@ export class MindMapSettingTab extends PluginSettingTab {
 	}
 
 	display(): void {
-		const {containerEl} = this;
+		const { containerEl } = this;
 
 		containerEl.empty();
 
-		containerEl.createEl('h2', {text: 'Canvas MindMap'});
+		containerEl.createEl('h2', { text: 'Canvas MindMap' });
 
 		this.useNavigateHotkeySetting(containerEl, this.plugin.settings);
 		this.createHotkeySetting(containerEl, this.plugin.settings);
-
-		new Setting(containerEl)
-			.setName('Donate')
-			.setDesc('If you like this plugin, consider donating to support continued development:')
-			.addButton((bt) => {
-				bt.buttonEl.outerHTML = `<a href="https://www.buymeacoffee.com/boninall"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=boninall&button_colour=6495ED&font_colour=ffffff&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00"></a>`;
-			});
 	}
 
 	useNavigateHotkeySetting(containerEl: HTMLElement, setting: MindMapSettings) {
