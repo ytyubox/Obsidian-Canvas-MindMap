@@ -68,12 +68,16 @@ test("Generate tree", () => {
 	]);
 	expect(
 		parseMarkdownListToTree(
-		`
+			`
 		- level 1
-			- level 1
+			- level 2
 		`
 		)
-	).toStrictEqual([{ text: "level 1", content: null, children: [
-{text:  "level 1", content: null, children: []}
-	] }]);
+	).toStrictEqual([
+		{
+			text: "level 1",
+			content: null,
+			children: [{ text: "level 2", content: null, children: [] }],
+		},
+	]);
 });
