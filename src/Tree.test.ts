@@ -61,5 +61,5 @@ function parseMarkdownListToTree(markdown: string): TreeNode[] {
 
 test("Generate tree", () => {
 	expect(parseMarkdownListToTree("")).toStrictEqual([]);
-	expect(parseMarkdownListToTree("")).toStrictEqual([]);
+	expect(parseMarkdownListToTree("abc")).toStrictEqual([]);
 });
