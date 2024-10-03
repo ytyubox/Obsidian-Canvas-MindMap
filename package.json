@@ -1,16 +1,6 @@
 {
-	"name": "canvas-help",
-	"version": "1.0.0",
-	"description": "A plugin to help your canvas work.",
-	"main": "main.js",
-	"scripts": {
-		"dev": "node esbuild.config.mjs",
-		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
-	},
-	"keywords": [],
 	"author": "Yu",
-	"license": "MIT",
+	"description": "A plugin to help your canvas work.",
 	"devDependencies": {
 		"@types/jest": "^29.5.13",
 		"@types/node": "^16.11.6",
@@ -24,5 +14,15 @@
 		"ts-jest": "^29.2.5",
 		"tslib": "2.4.0",
 		"typescript": "^4.7.4"
-	}
+	},
+	"keywords": [],
+	"license": "MIT",
+	"main": "main.js",
+	"name": "canvas-help",
+	"scripts": {
+		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+		"dev": "node esbuild.config.mjs",
+		"version": "node version-bump.mjs && git add manifest.json versions.json"
+	},
+	"version": "1.0.0"
 }
