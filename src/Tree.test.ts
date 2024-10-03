@@ -66,9 +66,14 @@ test("Generate tree", () => {
 	expect(parseMarkdownListToTree("- abc")).toStrictEqual([
 		{ text: "abc", content: null, children: [] },
 	]);
-	expect(parseMarkdownListToTree(`
-		- abc
-		`)).toStrictEqual([
-		{ text: "abc", content: null, children: [] },
-	]);
+	expect(
+		parseMarkdownListToTree(
+		`
+		- level 1
+			- level 1
+		`
+		)
+	).toStrictEqual([{ text: "level 1", content: null, children: [
+{text:  "level 1", content: null, children: []}
+	] }]);
 });
