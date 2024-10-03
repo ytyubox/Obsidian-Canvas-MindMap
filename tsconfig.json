@@ -18,8 +18,10 @@
     "strictNullChecks": true,
     "target": "ES6"
   },
+  "exclude": [
+    "**/*.test.ts"
+  ],
   "include": [
     "**/*.ts"
-  ],
-"exclude": ["**/*.test.ts"]
+  ]
 }
