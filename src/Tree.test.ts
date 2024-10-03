@@ -1,3 +1,5 @@
+import { text } from "stream/consumers";
+
 // example.test.ts
 export interface TreeNode {
 	text: string;
@@ -61,7 +63,7 @@ function parseMarkdownListToTree(markdown: string): TreeNode[] {
 
 test("Generate tree", () => {
 	expect(parseMarkdownListToTree("")).toStrictEqual([]);
-	expect(parseMarkdownListToTree("abc")).toStrictEqual([
-		
+	expect(parseMarkdownListToTree("- abc")).toStrictEqual([
+		{ text: "abc", content: null, children: [] },
 	]);
 });
