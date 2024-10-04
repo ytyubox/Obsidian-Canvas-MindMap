@@ -307,7 +307,9 @@ export default class CanvasMindMap extends Plugin {
 							currentSelectionItem.text
 						);
 						if (h1list.length === 0)
-							return new Notice("no selected card") && false;
+							return (
+								new Notice("selected is not  a list") && false
+							);
 
 						const nodeGroupHeight =
 							(currentSelectionItem.height * 0.6 + 20) *
