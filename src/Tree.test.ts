@@ -1,5 +1,5 @@
-import { text } from "stream/consumers";
-
+export {};
+import "jest";
 interface TreeNode {
 	text: string;
 	children: TreeNode[];
@@ -121,8 +121,7 @@ test("2 level list from tree", () => {
 	).toStrictEqual([
 		{
 			text: "level 1",
-			content: null,
-			children: [{ text: "level 1", content: null, children: [] }],
+			children: [{ text: "level 1", children: [] }],
 		},
 	]);
 });
