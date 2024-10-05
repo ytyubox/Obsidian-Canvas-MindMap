@@ -264,7 +264,6 @@ export default class CanvasMindMap extends Plugin {
 	async onload() {
 		await this.registerSettings();
 		this.registerCommands();
-		this.patchCanvas();
 		this.patchMarkdownFileInfo();
 		this.patchCanvasNode();
 	}
