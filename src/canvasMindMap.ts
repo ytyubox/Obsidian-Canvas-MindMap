@@ -24,7 +24,7 @@ import {
 	MindMapSettingTab,
 } from "./mindMapSettings";
 import { CanvasEdgeData } from "obsidian/canvas";
-import { parseMarkdownToTree } from "./Tree";
+import { parseMarkdownToTree, TreeNode } from "./Tree";
 
 const createEdge = async (node1: any, node2: any, canvas: any) => {
 	addEdge(
