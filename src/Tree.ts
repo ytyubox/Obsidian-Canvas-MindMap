@@ -7,13 +7,6 @@ function createTreeNode(text: string): TreeNode {
 	return { a: text, b: [] };
 }
 
-function splitIntoSentences(text: string): string[] {
-	return text
-		.split(/(?<=\.)\s*/)
-		.map((sentence) => sentence.trim())
-		.filter(Boolean);
-}
-
 export function parseMarkdownToTree(markdown: string): TreeNode[] {
 	if (!markdown.trim()) return []; // Handle the empty string case
 
@@ -35,14 +28,13 @@ export function parseMarkdownToTree(markdown: string): TreeNode[] {
 		const line = lines[0];
 		if (isQuoteItem(line)) {
 			let { forest, rest } = parseQuotesFromStringArray(lines);
-			root.concat(forest);
+			root.push.apply(root, forest);
 			lines = rest;
 		} else if (isListItem(line)) {
 			let { forest, rest } = parseListsFromStringArray(lines);
 			root.push.apply(root, forest);
-			console.log(root);
 			lines = rest;
-		} else if (line.length === 0) {
+		} else if (line.trim().length === 0) {
 			lines = lines.slice(1);
 		}
 	}
@@ -54,21 +46,21 @@ function parseQuotesFromStringArray(lines: string[]): {
 	rest: string[];
 } {
 	const forest: TreeNode[] = [];
-	let currentParent: TreeNode | undefined = undefined;
 	let stack: { level: number; node: TreeNode }[] = [];
 	let i = 0;
 
-	const getQuoteLevel = (line: string): number => {
-		const match = line.match(/^\s*(>+)/);
-		return match ? match[1].length : 0;
-	};
+	function getQuoteLevel(line: string): number {
+		// Match sequences of '>' possibly separated by spaces
+		const match = line.match(/^\s*(> ?)+/);
+		return match ? (match[0].match(/>/g) || []).length : 0;
+	}
 
-	const handleQuoteBlock = (text: string, level: number): TreeNode => {
-		const newNode = createTreeNode(text);
+	const addBlockToTree = (block: string, level: number) => {
+		const newNode = createTreeNode(block);
 
 		if (stack.length === 0 || level > stack[stack.length - 1].level) {
-			if (currentParent) {
-				currentParent.b.push(newNode);
+			if (stack.length > 0) {
+				stack[stack.length - 1].node.b.push(newNode);
 			} else {
 				forest.push(newNode);
 			}
@@ -84,28 +76,48 @@ function parseQuotesFromStringArray(lines: string[]): {
 		}
 
 		stack.push({ level, node: newNode });
-		currentParent = newNode;
-		return newNode;
 	};
+
+	let currentQuoteBlock = "";
+	let currentQuoteLevel = 0;
 
 	for (; i < lines.length; i++) {
 		const line = lines[i].trim();
-		if (line.length === 0) continue; // Skip empty lines
 
-		const quoteLevel = getQuoteLevel(line);
-		if (quoteLevel === 0) {
-			// Stop parsing if we reach a non-quote line
-			break;
+		if (line.length === 0) {
+			if (currentQuoteBlock) {
+				addBlockToTree(currentQuoteBlock, currentQuoteLevel);
+			}
+			currentQuoteBlock = "";
+			currentQuoteLevel = 0;
+			continue;
 		}
+		const quoteLevel = getQuoteLevel(line);
+
+		if (quoteLevel === 0) break;
 
 		const text = line.replace(/^\s*(>+)/, "").trim();
-		handleQuoteBlock(`> ${text}`, quoteLevel);
+
+		if (quoteLevel === currentQuoteLevel) {
+			currentQuoteBlock += `\n> ${text}`;
+		} else {
+			if (currentQuoteBlock) {
+				addBlockToTree(currentQuoteBlock, currentQuoteLevel);
+			}
+			currentQuoteBlock = `> ${text}`;
+			currentQuoteLevel = quoteLevel;
+		}
+	}
+
+	// Process the last accumulated quote block
+	if (currentQuoteBlock) {
+		addBlockToTree(currentQuoteBlock, currentQuoteLevel);
 	}
 
 	// Return the forest and the remaining lines
 	return {
 		forest,
-		rest: lines.slice(i),
+		rest: lines.slice(i), // The rest of the lines after the last quote
 	};
 }
 

@@ -5,7 +5,7 @@ describe("sum module", () => {
 	it("empty tree", () => {
 		expect(parseMarkdownToTree("")).toStrictEqual([]);
 	});
-	fit("1 level list to tree", () => {
+	it("1 level list to tree", () => {
 		expect(parseMarkdownToTree("- abc")).toStrictEqual([
 			{ a: "abc", b: [] },
 		]);
@@ -25,47 +25,52 @@ describe("sum module", () => {
 			},
 		]);
 	});
-
+	it("1 quote level to tree", () => {
+		expect(parseMarkdownToTree("> level 1.1\n> level 1.2")).toStrictEqual([
+			{
+				a: `> level 1.1\n> level 1.2`,
+				b: [],
+			},
+		]);
+	});
 	it("2 quote level to tree", () => {
+		expect(parseMarkdownToTree("> level 1.1\n> > level 2.1")).toStrictEqual(
+			[
+				{
+					a: `> level 1.1`,
+					b: [{ a: "> > level 2.1", b: [] }],
+				},
+			]
+		);
+	});
+	it("2 quote to tree", () => {
 		expect(
-			parseMarkdownToTree(
-				`
-		> level 1.1
-		> level 1.2
-		> > level 2.1
-		> level 1.3
+			parseMarkdownToTree(`
+> level 1.1
+> level 1.2
+> > level 2.1
+> level 1.3
 
-		> level 1.1
-		> level 1.2
-		> > > level 3.1
-		> level 1.3
-		`
-			)
+> level a.1
+> level a.2
+> > > level c.1
+> level a.3
+`)
 		).toStrictEqual([
 			{
-				a: `
-			> level 1.1
-			> level 1.2
-			`,
+				a: `> level 1.1\n> level 1.2`,
 				b: [{ a: "> > level 2.1", b: [] }],
 			},
 			{
-				a: `
-			> level 1.3
-			`,
+				a: `> level 1.3`,
 				b: [],
 			},
 			{
-				a: `
-			> level 1.1
-			> level 1.2
-			`,
-				b: [{ a: "> > > level 3.1", b: [] }],
+				a: `> level a.1\n> level a.2`,
+				b: [{ a: "> > > level c.1", b: [] }],
 			},
 			{
-				a: `
-			> level 1.3
-			`,
+				a: `> level a.3`,
 				b: [],
 			},
 		]);
