@@ -288,9 +288,7 @@ export default class CanvasMindMap extends Plugin {
 				}
 				// If checking is true, we're simply "checking" if the command can be run.
 				// If checking is false, then we want to actually perform the operation.
-				if (currentSelection.size > 1) {
-					return false;
-				}
+
 				if (!checking) {
 					// @ts-ignore
 					const canvas = canvasView?.canvas;
