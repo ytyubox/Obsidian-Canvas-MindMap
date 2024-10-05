@@ -60,6 +60,6 @@ invertible matrix
 dependent column
 singular matrix
 
-			`
-	)).toStrictEqual
-})
+			`)
+	).toStrictEqual([]);
+});
