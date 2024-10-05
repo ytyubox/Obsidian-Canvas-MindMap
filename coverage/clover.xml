@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1728112885527" clover="3.2.0">
-  <project timestamp="1728112885528" name="All files">
-    <metrics statements="123" coveredstatements="116" conditionals="57" coveredconditionals="47" methods="15" coveredmethods="15" elements="195" coveredelements="178" complexity="0" loc="123" ncloc="123" packages="1" files="1" classes="1"/>
+<coverage generated="1728112901719" clover="3.2.0">
+  <project timestamp="1728112901719" name="All files">
+    <metrics statements="122" coveredstatements="115" conditionals="57" coveredconditionals="47" methods="15" coveredmethods="15" elements="194" coveredelements="177" complexity="0" loc="122" ncloc="122" packages="1" files="1" classes="1"/>
     <file name="Tree.ts" path="/Users/tsungyu/Desktop/Develop-plugin/.obsidian/plugins/Obsidian-Canvas-helps/src/Tree.ts">
-      <metrics statements="123" coveredstatements="116" conditionals="57" coveredconditionals="47" methods="15" coveredmethods="15"/>
+      <metrics statements="122" coveredstatements="115" conditionals="57" coveredconditionals="47" methods="15" coveredmethods="15"/>
       <line num="7" count="43" type="stmt"/>
       <line num="10" count="1" type="stmt"/>
       <line num="11" count="9" type="cond" truecount="1" falsecount="0"/>
@@ -112,21 +112,20 @@
       <line num="207" count="31" type="stmt"/>
       <line num="210" count="4" type="stmt"/>
       <line num="211" count="30" type="stmt"/>
-      <line num="212" count="30" type="stmt"/>
-      <line num="213" count="30" type="cond" truecount="2" falsecount="0"/>
+      <line num="212" count="30" type="cond" truecount="2" falsecount="0"/>
+      <line num="214" count="29" type="stmt"/>
       <line num="215" count="29" type="stmt"/>
-      <line num="216" count="29" type="stmt"/>
-      <line num="217" count="1" type="cond" truecount="1" falsecount="0"/>
-      <line num="219" count="1" type="stmt"/>
-      <line num="221" count="30" type="stmt"/>
-      <line num="224" count="4" type="stmt"/>
-      <line num="225" count="34" type="stmt"/>
-      <line num="227" count="34" type="cond" truecount="1" falsecount="0"/>
-      <line num="230" count="31" type="cond" truecount="1" falsecount="0"/>
-      <line num="231" count="1" type="stmt"/>
-      <line num="234" count="30" type="stmt"/>
-      <line num="236" count="30" type="stmt"/>
-      <line num="240" count="4" type="stmt"/>
+      <line num="216" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="218" count="1" type="stmt"/>
+      <line num="220" count="30" type="stmt"/>
+      <line num="223" count="4" type="stmt"/>
+      <line num="224" count="34" type="stmt"/>
+      <line num="226" count="34" type="cond" truecount="1" falsecount="0"/>
+      <line num="229" count="31" type="cond" truecount="1" falsecount="0"/>
+      <line num="230" count="1" type="stmt"/>
+      <line num="233" count="30" type="stmt"/>
+      <line num="235" count="30" type="stmt"/>
+      <line num="239" count="4" type="stmt"/>
     </file>
   </project>
 </coverage>
