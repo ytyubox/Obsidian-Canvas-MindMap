@@ -61,5 +61,7 @@ dependent column
 singular matrix
 
 			`)
-	).toStrictEqual([]);
+	).toStrictEqual([
+		
+	]);
 });
