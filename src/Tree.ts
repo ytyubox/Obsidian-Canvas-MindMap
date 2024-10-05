@@ -84,7 +84,9 @@ export function parseMarkdownToTree(markdown: string): TreeNode[] {
 			// Handle indented content as a child of the last list item
 			if (currentParent) {
 				handleIndentedContent(trimmedLine, currentParent);
-			}
+			} else {
+        
+      }
 		}
 	});
 
