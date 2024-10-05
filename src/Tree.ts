@@ -1,4 +1,4 @@
-interface TreeNode {
+export interface TreeNode {
 	text: string;
 	children: TreeNode[];
 }
