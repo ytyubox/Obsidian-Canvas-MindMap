@@ -91,6 +91,5 @@ export function parseMarkdownToTree(markdown: string): TreeNode[] {
 			}
 		}
 	});
-	console.log(root);
 	return root;
 }
