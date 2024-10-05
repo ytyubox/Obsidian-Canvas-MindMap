@@ -288,68 +288,63 @@ export default class CanvasMindMap extends Plugin {
 				}
 				// If checking is true, we're simply "checking" if the command can be run.
 				// If checking is false, then we want to actually perform the operation.
-				if  (checking) return true;
+				if (checking) return true;
 
-					// @ts-ignore
-					const canvas = canvasView?.canvas;
-					const currentSelection = canvas?.selection;
-					
+				// @ts-ignore
+				const canvas = canvasView?.canvas;
+				const currentSelection = canvas?.selection;
 
-					const currentSelectionItem = currentSelection
-						.values()
-						.next().value;
-					if (currentSelection == undefined)
-						return new Notice("no selected card") && false;
-					console.log(currentSelectionItem);
-					const h1list = parseMarkdownToTree(
-						currentSelectionItem.text
-					);
-					if (h1list.length === 0)
-						return new Notice("selected is not  a list") && false;
+				const currentSelectionItem = currentSelection
+					.values()
+					.next().value;
+				if (currentSelection == undefined)
+					return new Notice("no selected card") && false;
+				console.log(currentSelectionItem);
+				const h1list = parseMarkdownToTree(currentSelectionItem.text);
+				if (h1list.length === 0)
+					return new Notice("selected is not  a list") && false;
 
-					const nodeGroupHeight =
-						(currentSelectionItem.height * 0.6 + 20) *
-						h1list.length;
-					let direction = -1;
-					const nodeGroupY =
-						currentSelectionItem.y +
-						currentSelectionItem.height / 2 +
-						(nodeGroupHeight / 2) * direction;
+				const nodeGroupHeight =
+					(currentSelectionItem.height * 0.6 + 20) * h1list.length;
+				let direction = -1;
+				const nodeGroupY =
+					currentSelectionItem.y +
+					currentSelectionItem.height / 2 +
+					(nodeGroupHeight / 2) * direction;
 
-					const addCard = (parentNode: any, node: TreeNode) => {
-						node.children.forEach((child, index) => {
-							var content = child.text;
-							const newNode = createChildCardNode(
-								canvas,
-								parentNode,
-								content,
-								"#" + child,
-								nodeGroupY -
-									direction *
-										(parentNode.height * 0.6 + 20) *
-										index
-							);
-							addCard(newNode, child);
-						});
-					};
-
-					h1list.forEach((item, index) => {
-						var content = item.text;
-						const newCard = createChildCardNode(
+				const addCard = (parentNode: any, node: TreeNode) => {
+					node.children.forEach((child, index) => {
+						var content = child.text;
+						const newNode = createChildCardNode(
 							canvas,
-							currentSelectionItem,
+							parentNode,
 							content,
-							"#" + item,
+							"#" + child,
 							nodeGroupY -
 								direction *
-									(currentSelectionItem.height * 0.6 + 20) *
+									(parentNode.height * 0.6 + 20) *
 									index
 						);
-						addCard(newCard, item);
+						addCard(newNode, child);
 					});
+				};
 
-					return true;
-				}
+				h1list.forEach((item, index) => {
+					var content = item.text;
+					const newCard = createChildCardNode(
+						canvas,
+						currentSelectionItem,
+						content,
+						"#" + item,
+						nodeGroupY -
+							direction *
+								(currentSelectionItem.height * 0.6 + 20) *
+								index
+					);
+					addCard(newCard, item);
+				});
+
+				return true;
 			},
 		});
 	}
