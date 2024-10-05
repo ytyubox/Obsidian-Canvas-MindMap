@@ -283,7 +283,8 @@ export default class CanvasMindMap extends Plugin {
 				// Conditions to check
 				const canvasView =
 					this.app.workspace.getActiveViewOfType(ItemView);
-				if (canvasView?.getViewType() === "canvas") {
+				if (canvasView?.getViewType() !== "canvas") {
+					return false;
 				}
 				// If checking is true, we're simply "checking" if the command can be run.
 				// If checking is false, then we want to actually perform the operation.
