@@ -164,7 +164,6 @@ export const addNode = (
 			node.text = content;
 			break;
 		case "file":
-			console.log(node);
 			node.file = content;
 			if (subpath) node.subpath = subpath;
 			break;
@@ -284,9 +283,11 @@ function calculateDimensionsFromString(
 	text: string,
 	charWidth: number = 10, // Width of each character (default 8 pixels)
 	lineHeight: number = 100, // Height of each line (default 20 pixels)
-	maxWidth: number = 50 // Maximum number of characters per line (default 50 characters)
+	maxWidth: number = 500, // Maximum number of characters per line (default 50 characters)
+	minWidth: number = 200
 ): { width: number; height: number } {
 	// Split the text into words for better handling of wrapping
+
 	const words = text.split(" ");
 
 	let currentLineLength = 0;
@@ -302,13 +303,14 @@ function calculateDimensionsFromString(
 		} else {
 			// Word doesn't fit, move to the next line
 			lines++;
-			currentLineLength = wordLength + 1; // Start a new line
 		}
 	});
 
 	// Calculate width and height based on the string length and wrapping
-	const width = Math.min(maxWidth, currentLineLength) * charWidth;
+	const width = Math.max(
+		Math.min(maxWidth, currentLineLength * charWidth),
+		minWidth
+	);
 	const height = lines * lineHeight;
-
 	return { width, height };
 }

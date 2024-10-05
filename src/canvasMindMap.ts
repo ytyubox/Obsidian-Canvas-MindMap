@@ -299,7 +299,6 @@ export default class CanvasMindMap extends Plugin {
 					.next().value;
 				if (currentSelection == undefined)
 					return new Notice("no selected card") && false;
-				console.log(currentSelectionItem);
 				const forest = parseMarkdownToTree(currentSelectionItem.text);
 				if (forest.length === 0)
 					return new Notice("selected is not a list") && false;
@@ -334,7 +333,6 @@ export default class CanvasMindMap extends Plugin {
 
 				forest.forEach((item, index) => {
 					var content = item.a;
-					console.log("yu", forest);
 					const newCard = createChildCardNode(
 						canvas,
 						currentSelectionItem,
