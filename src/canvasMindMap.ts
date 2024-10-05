@@ -361,53 +361,6 @@ export default class CanvasMindMap extends Plugin {
 		});
 	}
 
-	patchCanvasNode() {
-		const patchNode = () => {
-			const canvasView = this.app.workspace
-				.getLeavesOfType("canvas")
-				.first()?.view;
-			// @ts-ignore
-			const canvas = canvasView?.canvas;
-			if (!canvas) return false;
-
-			const node = Array.from(canvas.nodes).first();
-			if (!node) return false;
-
-			// @ts-ignore
-			const nodeInstance = node[1];
-
-			const uninstaller = around(nodeInstance.constructor.prototype, {
-				setColor: (next: any) =>
-					function (e: any, t: any) {
-						next.call(this, e, t);
-						this.canvas
-							.getEdgesForNode(this)
-							.forEach((edge: any) => {
-								if (edge.from.node === this) {
-									edge.setColor(e, true);
-									edge.render();
-									// edge.to.node.setColor(e, true);
-								}
-							});
-						canvas.requestSave();
-					},
-			});
-			this.register(uninstaller);
-
-			console.log("Obsidian-Canvas-MindMap: canvas node patched");
-			return true;
-		};
-
-		this.app.workspace.onLayoutReady(() => {
-			if (!patchNode()) {
-				const evt = this.app.workspace.on("layout-change", () => {
-					patchNode() && this.app.workspace.offref(evt);
-				});
-				this.registerEvent(evt);
-			}
-		});
-	}
-
 	patchMarkdownFileInfo() {
 		const patchEditor = () => {
 			const editorInfo = this.app.workspace.activeEditor;
