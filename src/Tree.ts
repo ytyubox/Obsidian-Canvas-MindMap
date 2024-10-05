@@ -18,7 +18,6 @@ export function parseMarkdownToTree(markdown: string): TreeNode[] {
 	const lines = markdown.split("\n");
 	const root: TreeNode[] = [];
 	let currentParent: TreeNode | undefined = undefined;
-	console.log(lines);
 	let stack: { level: number; node: TreeNode }[] = [];
 
 	const getIndentationLevel = (line: string): number => {
