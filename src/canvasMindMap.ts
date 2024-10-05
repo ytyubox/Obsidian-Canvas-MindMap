@@ -341,8 +341,6 @@ export default class CanvasMindMap extends Plugin {
 
 						h1list.forEach((item, index) => {
 							var content = item.text;
-							if (item.content)
-								content = content + "\n" + item.content;
 							const newCard = createChildCardNode(
 								canvas,
 								currentSelectionItem,
