@@ -302,7 +302,7 @@ export default class CanvasMindMap extends Plugin {
 				console.log(currentSelectionItem);
 				const h1list = parseMarkdownToTree(currentSelectionItem.text);
 				if (h1list.length === 0)
-					return new Notice("selected is not  a list") && false;
+					return new Notice("selected is not a list") && false;
 
 				const nodeGroupHeight =
 					(currentSelectionItem.height * 0.6 + 20) * h1list.length;
