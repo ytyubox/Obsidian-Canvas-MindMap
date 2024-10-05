@@ -62,6 +62,51 @@ singular matrix
 
 			`)
 	).toStrictEqual([
-		
+		{ text: "Direct solution", children: [] },
+		{ text: "Matrix solution", children: [] },
+		{
+			text: "Particular solution + nullspace solution, x = y + z",
+			children: [],
+		},
+		{ text: "[[Vector]]", children: [] },
+		{ text: "[[Linear combination]]", children: [] },
+		{ text: "space", children: [] },
+		{ text: "[[20241002194408|inner product]]", children: [] },
+		{ text: "vector Length", children: [] },
+		{ text: "[[unit vector]]", children: [] },
+		{ text: "Angle between two Vectors", children: [] },
+		{ text: "perpendicular", children: [] },
+		{ text: "Schwarz inequality", children: [] },
+		{ text: "Triangle inequality", children: [] },
+		{ text: "Matrices", children: [] },
+		{ text: "Matrix times vector", children: [] },
+		{ text: "combination of the columns", children: [] },
+		{ text: "Multiplication a row at a time", children: [] },
+		{
+			text: "Multiplication is also dot product with rows",
+			children: [],
+		},
+		{
+			text: "> Old question: Compute the linear combination $x_1u + x_{2}v + x_{3}w$ to find b.",
+			children: [],
+		},
+		{
+			text: "> New question: Which combination of $u, v, w$ produces a particular vector b？",
+			children: [],
+		},
+		{ text: "[[inverse matrix]]", children: [] },
+		{
+			text: "integration is the inverse of differentiation.",
+			children: [],
+		},
+		{ text: "[[202409282040|cyclic]]", children: [] },
+		{
+			text: "All [[Linear combination]] of [[202409282040|cyclic]] vector lie on the plane",
+			children: [],
+		},
+		{ text: "independent columns", children: [] },
+		{ text: "invertible matrix", children: [] },
+		{ text: "dependent column", children: [] },
+		{ text: "singular matrix", children: [] },
 	]);
 });
