@@ -28,7 +28,7 @@ test("2 level list from tree", () => {
 test("complex  tree", () => {
 	expect(
 		parseMarkdownToTree(`
-			Direct solution
+Direct solution
 Matrix solution
 Particular solution + nullspace solution, x = y + z
 
