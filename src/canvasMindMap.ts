@@ -300,12 +300,12 @@ export default class CanvasMindMap extends Plugin {
 				if (currentSelection == undefined)
 					return new Notice("no selected card") && false;
 				console.log(currentSelectionItem);
-				const h1list = parseMarkdownToTree(currentSelectionItem.text);
-				if (h1list.length === 0)
+				const forest = parseMarkdownToTree(currentSelectionItem.text);
+				if (forest.length === 0)
 					return new Notice("selected is not a list") && false;
 
 				const nodeGroupHeight =
-					(currentSelectionItem.height * 0.6 + 20) * h1list.length;
+					(currentSelectionItem.height * 0.6 + 20) * forest.length;
 				let direction = -1;
 				const nodeGroupY =
 					currentSelectionItem.y +
@@ -313,8 +313,9 @@ export default class CanvasMindMap extends Plugin {
 					(nodeGroupHeight / 2) * direction;
 
 				const addCard = (parentNode: any, node: TreeNode) => {
-					node.children.forEach((child, index) => {
-						var content = child.text;
+					node.b.forEach((child, index) => {
+						var content = child.a;
+						console.log("yu", content);
 						const newNode = createChildCardNode(
 							canvas,
 							parentNode,
@@ -329,8 +330,9 @@ export default class CanvasMindMap extends Plugin {
 					});
 				};
 
-				h1list.forEach((item, index) => {
-					var content = item.text;
+				forest.forEach((item, index) => {
+					var content = item.a;
+					console.log("yu", forest);
 					const newCard = createChildCardNode(
 						canvas,
 						currentSelectionItem,
