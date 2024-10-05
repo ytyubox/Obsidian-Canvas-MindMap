@@ -36,6 +36,10 @@ export function parseMarkdownToTree(markdown: string): TreeNode[] {
 			lines = rest;
 		} else if (line.trim().length === 0) {
 			lines = lines.slice(1);
+		} else {
+			let { forest, rest } = parseParagraphsFromStringArray(lines);
+			root.push.apply(root, forest);
+			lines = rest;
 		}
 	}
 	return root;
@@ -182,5 +186,58 @@ function parseListsFromStringArray(lines: string[]): {
 	return {
 		forest,
 		rest: lines.slice(i),
+	};
+}
+
+function parseParagraphsFromStringArray(lines: string[]): {
+	forest: TreeNode[];
+	rest: string[];
+} {
+	const forest: TreeNode[] = [];
+	let currentParent: TreeNode | undefined = undefined;
+	let i = 0;
+
+	const getIndentationLevel = (line: string): number => {
+		return line.match(/^\s*/)?.[0].length || 0;
+	};
+
+	const isMarkdownType = (line: string): boolean => {
+		// Detect markdown types like lists (-, *, +, or numbered lists, and blockquotes >)
+		return /^\s*([-*+]\s|\d+\.\s|>)/.test(line);
+	};
+
+	const handleParagraph = (line: string, level: number) => {
+		const newNode = createTreeNode(line.trim());
+
+		if (level === 0) {
+			// If not indented, it's a new root paragraph
+			forest.push(newNode);
+			currentParent = newNode;
+		} else if (currentParent) {
+			// If indented, it's a child of the last non-indented paragraph
+			currentParent.b.push(newNode);
+		}
+	};
+
+	for (; i < lines.length; i++) {
+		const line = lines[i].trim();
+
+		if (line.length === 0) continue; // Skip empty lines
+
+		// Check if this line is another markdown type (list, quote, etc.)
+		if (isMarkdownType(line)) {
+			break; // Stop parsing when a markdown type is encountered
+		}
+
+		const indentationLevel = getIndentationLevel(lines[i]);
+
+		// Handle the line as a paragraph
+		handleParagraph(line, indentationLevel);
+	}
+
+	// Return the parsed forest and the remaining lines
+	return {
+		forest,
+		rest: lines.slice(i), // Remaining unprocessed lines
 	};
 }

@@ -5,6 +5,20 @@ describe("sum module", () => {
 	it("empty tree", () => {
 		expect(parseMarkdownToTree("")).toStrictEqual([]);
 	});
+	it("1 level  to tree", () => {
+		expect(parseMarkdownToTree("level 1.1\nlevel 1.2")).toStrictEqual([
+			{ a: "level 1.1", b: [] },
+			{ a: "level 1.2", b: [] },
+		]);
+	});
+	it("2 level to tree", () => {
+		expect(parseMarkdownToTree(`level 1\n     level 2`)).toStrictEqual([
+			{
+				a: "level 1",
+				b: [{ a: "level 2", b: [] }],
+			},
+		]);
+	});
 	it("1 level list to tree", () => {
 		expect(parseMarkdownToTree("- abc")).toStrictEqual([
 			{ a: "abc", b: [] },
@@ -75,7 +89,7 @@ describe("sum module", () => {
 			},
 		]);
 	});
-	// test("complex  tree", () => {
+	// it("complex  tree", () => {
 	// 	expect(
 	// 		parseMarkdownToTree(`
 	// Direct solution
