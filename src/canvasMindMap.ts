@@ -311,21 +311,23 @@ export default class CanvasMindMap extends Plugin {
 					currentSelectionItem.y +
 					currentSelectionItem.height / 2 +
 					(nodeGroupHeight / 2) * direction;
-
+				let lastYMax = currentSelectionItem.y;
 				const addCard = (parentNode: any, node: TreeNode) => {
 					node.b.forEach((child, index) => {
 						var content = child.a;
-						console.log("yu", content);
 						const newNode = createChildCardNode(
 							canvas,
 							parentNode,
 							content,
 							"#" + child,
-							nodeGroupY -
-								direction *
-									(parentNode.height * 0.6 + 20) *
-									index
+							lastYMax + 20
 						);
+						if (newNode) {
+							let y = newNode.y ?? 0;
+							let height = newNode.height ?? 0;
+							lastYMax = y + height;
+						}
+
 						addCard(newNode, child);
 					});
 				};
@@ -338,11 +340,13 @@ export default class CanvasMindMap extends Plugin {
 						currentSelectionItem,
 						content,
 						"#" + item,
-						nodeGroupY -
-							direction *
-								(currentSelectionItem.height * 0.6 + 20) *
-								index
+						lastYMax + 20
 					);
+					if (newCard) {
+						let y = newCard.y ?? 0;
+						let height = newCard.height ?? 0;
+						lastYMax = y + height;
+					}
 					addCard(newCard, item);
 				});
 

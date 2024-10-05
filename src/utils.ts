@@ -93,11 +93,12 @@ export const createChildCardNode = (
 	path: string,
 	y: number
 ) => {
+	const { width, height } = calculateDimensionsFromString(content);
 	const node = addNode(canvas, random(16), {
-		x: parentNode.x + parentNode.width + 200,
+		x: parentNode.x + parentNode.width + 200 + width,
 		y: y,
-		width: parentNode.width,
-		height: parentNode.height * 0.6,
+		width: width,
+		height: height,
 		type: isWikiLink(content) ? "file" : "text",
 		content: extractWikiLinkContent(content) ?? content,
 		subpath: undefined,
@@ -278,4 +279,36 @@ function shouldAddChild(
 		default:
 			return true;
 	}
+}
+function calculateDimensionsFromString(
+	text: string,
+	charWidth: number = 10, // Width of each character (default 8 pixels)
+	lineHeight: number = 100, // Height of each line (default 20 pixels)
+	maxWidth: number = 50 // Maximum number of characters per line (default 50 characters)
+): { width: number; height: number } {
+	// Split the text into words for better handling of wrapping
+	const words = text.split(" ");
+
+	let currentLineLength = 0;
+	let lines = 1; // Start with at least one line
+
+	// Calculate lines needed based on word wrapping
+	words.forEach((word) => {
+		const wordLength = word.length;
+
+		if (currentLineLength + wordLength + 1 <= maxWidth) {
+			// Word fits in the current line (add 1 for the space)
+			currentLineLength += wordLength + 1;
+		} else {
+			// Word doesn't fit, move to the next line
+			lines++;
+			currentLineLength = wordLength + 1; // Start a new line
+		}
+	});
+
+	// Calculate width and height based on the string length and wrapping
+	const width = Math.min(maxWidth, currentLineLength) * charWidth;
+	const height = lines * lineHeight;
+
+	return { width, height };
 }

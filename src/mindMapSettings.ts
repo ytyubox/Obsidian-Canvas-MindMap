@@ -108,20 +108,6 @@ export class MindMapSettingTab extends PluginSettingTab {
 					}, 700);
 				});
 			});
-
-		// if (setting.navigate.useNavigate) {
-		// 	new Setting(containerEl)
-		// 		.setName('Modifier Key')
-		// 		.setDesc('The modifier key to use with the hotkey')
-		// 		.addDropdown((dropdown) => {
-		// 			const mods = supportModifierKey();
-		// 			dropdown.addOption('None', 'None');
-		// 			dropdown.setValue(setting.navigate.modifierKey[0]);
-		// 			dropdown.onChange((value) => {
-		// 				this.updateSettings('navigate.modifierKey.0', value);
-		// 			});
-		// 		});
-		// }
 	}
 
 	private createHotkeySetting(
@@ -137,41 +123,5 @@ export class MindMapSettingTab extends PluginSettingTab {
 					this.updateSettings("create.createFloat", value);
 				});
 			});
-		//
-		// new Setting(containerEl)
-		// 	.setName('Child Direction')
-		// 	.setDesc('The direction of the child node')
-		// 	.addDropdown((dropdown) => {
-		// 		dropdown.addOption('Right', 'right');
-		// 		dropdown.addOption('Left', 'left');
-		// 		dropdown.addOption('Up', 'up');
-		// 		dropdown.addOption('Down', 'down');
-		// 		dropdown.setValue(setting.create.childDirection);
-		// 		dropdown.onChange((value) => {
-		// 			this.updateSettings('create.childDirection', value);
-		// 		});
-		// 	});
-		//
-		// new Setting(containerEl)
-		// 	.setName('Sibling Width')
-		// 	.setDesc('The width of the sibling node')
-		// 	.addSlider((slider) => {
-		// 		slider.setLimits(100, 500, 10);
-		// 		slider.setValue(setting.create.siblingWidth);
-		// 		slider.onChange((value) => {
-		// 			this.updateSettings('create.siblingWidth', value);
-		// 		});
-		// 	});
-		//
-		// new Setting(containerEl)
-		// 	.setName('Sibling Height')
-		// 	.setDesc('The height of the sibling node')
-		// 	.addSlider((slider) => {
-		// 		slider.setLimits(50, 300, 10);
-		// 		slider.setValue(setting.create.siblingHeight);
-		// 		slider.onChange((value) => {
-		// 			this.updateSettings('create.siblingHeight', value);
-		// 		});
-		// 	});
 	}
 }
