@@ -89,88 +89,84 @@ describe("sum module", () => {
 			},
 		]);
 	});
-	// it("complex  tree", () => {
-	// 	expect(
-	// 		parseMarkdownToTree(`
-	// Direct solution
-	// Matrix solution
-	// Particular solution + nullspace solution, x = y + z
 
-	// [[Vector]]
-	// [[Linear combination]]
-	// space
-	// [[20241002194408|inner product]]
-	// vector Length
-	// [[unit vector]]
-	// Angle between two Vectors
-	// perpendicular
-	// Schwarz inequality
-	// Triangle inequality
-	// Matrices
-	// Matrix times vector
-	// combination of the columns
-	// Multiplication a row at a time
-	// Multiplication is also dot product with rows
+	it("complex  tree", () => {
+		const markdown = `
+	Direct solution
+	Matrix solution
+	Particular solution + nullspace solution, x = y + z
 
-	// > Old question: Compute the linear combination $x_1u + x_{2}v + x_{3}w$ to find b.
-	// > New question: Which combination of $u, v, w$ produces a particular vector b？
+	[[Vector]]
+	[[Linear combination]]
+	space
+	[[20241002194408|inner product]]
+	vector Length
+	[[unit vector]]
+	Angle between two Vectors
+	perpendicular
+	Schwarz inequality
+	Triangle inequality
+	Matrices
+	Matrix times vector
+	combination of the columns
+	Multiplication a row at a time
+	Multiplication is also dot product with rows
 
-	// [[inverse matrix]]
-	// integration is the inverse of differentiation.
-	// [[202409282040|cyclic]]
-	// All [[Linear combination]] of [[202409282040|cyclic]] vector lie on the plane
-	// independent columns
-	// invertible matrix
-	// dependent column
-	// singular matrix
+	> Old question: Compute the linear combination $x_1u + x_{2}v + x_{3}w$ to find b.
+	> New question: Which combination of $u, v, w$ produces a particular vector b？
 
-	// 			`)
-	// 	).toStrictEqual([
-	// 		{ a: "Direct solution", b: [] },
-	// 		{ a: "Matrix solution", b: [] },
-	// 		{
-	// 			a: "Particular solution + nullspace solution, x = y + z",
-	// 			b: [],
-	// 		},
-	// 		{ a: "[[Vector]]", b: [] },
-	// 		{ a: "[[Linear combination]]", b: [] },
-	// 		{ a: "space", b: [] },
-	// 		{ a: "[[20241002194408|inner product]]", b: [] },
-	// 		{ a: "vector Length", b: [] },
-	// 		{ a: "[[unit vector]]", b: [] },
-	// 		{ a: "Angle between two Vectors", b: [] },
-	// 		{ a: "perpendicular", b: [] },
-	// 		{ a: "Schwarz inequality", b: [] },
-	// 		{ a: "Triangle inequality", b: [] },
-	// 		{ a: "Matrices", b: [] },
-	// 		{ a: "Matrix times vector", b: [] },
-	// 		{ a: "combination of the columns", b: [] },
-	// 		{ a: "Multiplication a row at a time", b: [] },
-	// 		{
-	// 			a: "Multiplication is also dot product with rows",
-	// 			b: [],
-	// 		},
-	// 		{
-	// 			a: `
-	// 			> Old question: Compute the linear combination $x_1u + x_{2}v + x_{3}w$ to find b.
-	// 			> New question: Which combination of $u, v, w$ produces a particular vector b？
-	// 			`,
-	// 			b: [],
-	// 		},
-	// 		{ a: "[[inverse matrix]]", b: [] },
-	// 		{
-	// 			a: "integration is the inverse of differentiation.",
-	// 			b: [],
-	// 		},
-	// 		{ a: "[[202409282040|cyclic]]", b: [] },
-	// 		{
-	// 			a: "All [[Linear combination]] of [[202409282040|cyclic]] vector lie on the plane",
-	// 			b: [],
-	// 		},
-	// 		{ a: "independent columns", b: [] },
-	// 		{ a: "invertible matrix", b: [] },
-	// 		{ a: "dependent column", b: [] },
-	// 		{ a: "singular matrix", b: [] },
-	// 	]);
-	// });
+	[[inverse matrix]]
+	integration is the inverse of differentiation.
+	[[202409282040|cyclic]]
+	All [[Linear combination]] of [[202409282040|cyclic]] vector lie on the plane
+	independent columns
+	invertible matrix
+	dependent column
+	singular matrix
+				`;
+		expect(parseMarkdownToTree(markdown)).toStrictEqual([
+			{ a: "Direct solution", b: [] },
+			{ a: "Matrix solution", b: [] },
+			{
+				a: "Particular solution + nullspace solution, x = y + z",
+				b: [],
+			},
+			{ a: "[[Vector]]", b: [] },
+			{ a: "[[Linear combination]]", b: [] },
+			{ a: "space", b: [] },
+			{ a: "[[20241002194408|inner product]]", b: [] },
+			{ a: "vector Length", b: [] },
+			{ a: "[[unit vector]]", b: [] },
+			{ a: "Angle between two Vectors", b: [] },
+			{ a: "perpendicular", b: [] },
+			{ a: "Schwarz inequality", b: [] },
+			{ a: "Triangle inequality", b: [] },
+			{ a: "Matrices", b: [] },
+			{ a: "Matrix times vector", b: [] },
+			{ a: "combination of the columns", b: [] },
+			{ a: "Multiplication a row at a time", b: [] },
+			{
+				a: "Multiplication is also dot product with rows",
+				b: [],
+			},
+			{
+				a: "> Old question: Compute the linear combination $x_1u + x_{2}v + x_{3}w$ to find b.\n> New question: Which combination of $u, v, w$ produces a particular vector b？",
+				b: [],
+			},
+			{ a: "[[inverse matrix]]", b: [] },
+			{
+				a: "integration is the inverse of differentiation.",
+				b: [],
+			},
+			{ a: "[[202409282040|cyclic]]", b: [] },
+			{
+				a: "All [[Linear combination]] of [[202409282040|cyclic]] vector lie on the plane",
+				b: [],
+			},
+			{ a: "independent columns", b: [] },
+			{ a: "invertible matrix", b: [] },
+			{ a: "dependent column", b: [] },
+			{ a: "singular matrix", b: [] },
+		]);
+	});
 });

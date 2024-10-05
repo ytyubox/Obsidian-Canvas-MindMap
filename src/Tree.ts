@@ -195,6 +195,7 @@ function parseParagraphsFromStringArray(lines: string[]): {
 } {
 	const forest: TreeNode[] = [];
 	let currentParent: TreeNode | undefined = undefined;
+	let currentLevel = 999;
 	let i = 0;
 
 	const getIndentationLevel = (line: string): number => {
@@ -208,8 +209,7 @@ function parseParagraphsFromStringArray(lines: string[]): {
 
 	const handleParagraph = (line: string, level: number) => {
 		const newNode = createTreeNode(line.trim());
-
-		if (level === 0) {
+		if (level <= currentLevel) {
 			// If not indented, it's a new root paragraph
 			forest.push(newNode);
 			currentParent = newNode;
@@ -217,6 +217,7 @@ function parseParagraphsFromStringArray(lines: string[]): {
 			// If indented, it's a child of the last non-indented paragraph
 			currentParent.b.push(newNode);
 		}
+		currentLevel = level;
 	};
 
 	for (; i < lines.length; i++) {
@@ -230,7 +231,6 @@ function parseParagraphsFromStringArray(lines: string[]): {
 		}
 
 		const indentationLevel = getIndentationLevel(lines[i]);
-
 		// Handle the line as a paragraph
 		handleParagraph(line, indentationLevel);
 	}
