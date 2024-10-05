@@ -85,6 +85,7 @@ export function parseMarkdownToTree(markdown: string): TreeNode[] {
 			if (currentParent) {
 				handleIndentedContent(trimmedLine, currentParent);
 			} else {
+        // If there's no current parent, just add the line as a child of the root
         
       }
 		}
