@@ -293,9 +293,7 @@ export default class CanvasMindMap extends Plugin {
 					// @ts-ignore
 					const canvas = canvasView?.canvas;
 					const currentSelection = canvas?.selection;
-					if (currentSelection.size > 1) {
-						return false;
-					}
+					
 
 					const currentSelectionItem = currentSelection
 						.values()
