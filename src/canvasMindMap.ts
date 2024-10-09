@@ -15,6 +15,8 @@ import {
 	addNode,
 	buildTrees,
 	createChildFileNode,
+	isWikiLink,
+	extractWikiLinkContent,
 	random,
 	createChildCardNode,
 } from "./utils";
@@ -351,6 +353,71 @@ export default class CanvasMindMap extends Plugin {
 				return true;
 			},
 		});
+		this.addCommand({
+			id: "split-card-into-grid",
+			name: "Split card into grid",
+			checkCallback: (checking: boolean) => {
+				// Conditions to check
+				const canvasView =
+					this.app.workspace.getActiveViewOfType(ItemView);
+				if (canvasView?.getViewType() !== "canvas") {
+					return false;
+				}
+				// If checking is true, we're simply "checking" if the command can be run.
+				// If checking is false, then we want to actually perform the operation.
+				if (checking) return true;
+
+				// @ts-ignore
+				const canvas = canvasView?.canvas;
+				const currentSelection = canvas?.selection;
+
+				const currentSelectionItem = currentSelection
+					.values()
+					.next().value;
+				if (currentSelection == undefined)
+					return new Notice("no selected card") && false;
+				const forest = parseMarkdownToTree(currentSelectionItem.text);
+				if (forest.length === 0)
+					return new Notice("selected is not a list") && false;
+
+				const spacing = 10;
+				const itemWidth = 200;
+				const itemHeight = 100;
+				let lastYMax = currentSelectionItem.y;
+				let lastxMax =
+					currentSelectionItem.x +
+					currentSelectionItem.width +
+					spacing;
+				const flattenCard = forest.flatMap((item) => {
+					return [item].concat(item.b);
+				});
+				const cols = findBestGrid(flattenCard.length);
+				console.log(lastxMax, lastYMax);
+				flattenCard.forEach((item, index) => {
+					// Determine the row and column in the grid for this item
+					const col = index % cols;
+					const row = Math.floor(index / cols);
+
+					// Calculate the x and y positions based on the column and row, with spacing
+					const x = lastxMax + col * (itemWidth + spacing);
+					const y = lastYMax + row * (itemHeight + spacing);
+					console.log(y);
+					// Add the item to the canvas with addNode
+					const node = addNode(canvas, random(16), {
+						x,
+						y,
+						width: itemWidth,
+						height: itemHeight,
+						type: isWikiLink(item.a) ? "file" : "text",
+						content: extractWikiLinkContent(item.a) ?? item.a,
+						subpath: undefined,
+					});
+
+					canvas.requestSave();
+				});
+				return true;
+			},
+		});
 	}
 
 	public async loadSettings(): Promise<void> {
@@ -364,4 +431,19 @@ export default class CanvasMindMap extends Plugin {
 	async saveSettings(): Promise<void> {
 		await this.saveData(this.settings);
 	}
+}
+function findBestGrid(numItems: number): number {
+	let rows = Math.floor(Math.sqrt(numItems));
+	let cols = Math.ceil(numItems / rows);
+
+	// Adjust to find a more balanced grid if necessary
+	while (rows * cols < numItems) {
+		if (rows <= cols) {
+			rows++;
+		} else {
+			cols++;
+		}
+	}
+
+	return cols;
 }

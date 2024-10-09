@@ -69,14 +69,14 @@ export const createChildFileNode = (
 
 	return node;
 };
-function isWikiLink(input: string): boolean {
+export function isWikiLink(input: string): boolean {
 	// Regex to match a wikilink format: [[content]]
 	const wikiLinkRegex = /^\[\[.*?\]\]$/;
 
 	// Test if the input matches the wikilink pattern
 	return wikiLinkRegex.test(input);
 }
-function extractWikiLinkContent(input: string): string | null {
+export function extractWikiLinkContent(input: string): string | null {
 	// Regex to match and capture the content inside [[content]]
 	const wikiLinkRegex = /^\[\[(.*?)\]\]$/;
 
