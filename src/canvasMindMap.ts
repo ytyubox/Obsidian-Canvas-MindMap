@@ -363,8 +363,9 @@ export default class CanvasMindMap extends Plugin {
 				if (canvasView?.getViewType() !== "canvas") {
 					return false;
 				}
+				// @ts-ignore
+				const canvas = canvasView?.canvas;
 				// get selected text
-				console.log(canvasView?.canvas);
 				return true;
 			},
 		});
