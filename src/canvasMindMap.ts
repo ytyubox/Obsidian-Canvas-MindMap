@@ -28,6 +28,7 @@ import {
 import { CanvasEdgeData } from "obsidian/canvas";
 import { parseMarkdownToTree, TreeNode } from "./Tree";
 import { stringify } from "querystring";
+import { inspect } from "util"; // or directly
 
 const createEdge = async (node1: any, node2: any, canvas: any) => {
 	addEdge(
@@ -382,7 +383,8 @@ export default class CanvasMindMap extends Plugin {
 
 				const selectedCard = selected.values().next().value;
 				// console.log("selectedCard", selectedCard);
-				console.log(JSON.stringify(selectedCard));
+				console.log(inspect(selectedCard));
+
 				// get type
 				const selectedType =
 					selectedCard.file == undefined ? "card" : "file";
