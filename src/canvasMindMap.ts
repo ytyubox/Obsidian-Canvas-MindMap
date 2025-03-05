@@ -366,6 +366,7 @@ export default class CanvasMindMap extends Plugin {
 				// @ts-ignore
 				const selected = canvasView?.canvas?.selected;
 				if (selected === undefined) {
+					console.log("no selected card");
 					return new Notice("no selected card") && false;
 				}
 				// get selected text
