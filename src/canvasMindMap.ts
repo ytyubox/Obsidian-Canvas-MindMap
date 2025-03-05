@@ -365,7 +365,12 @@ export default class CanvasMindMap extends Plugin {
 				if (checking) return true;
 				console.log("loaded");
 				// @ts-ignore
-				const selected = canvasView?.canvas?.selected;
+				const canvas = canvasView?.canvas;
+				if (canvas === undefined) {
+					console.log("no canvas");
+					return new Notice("no canvas") && false;
+				}
+				const selected = canvas.selected;
 				if (selected === undefined) {
 					console.log("no selected card");
 					return new Notice("no selected card") && false;
