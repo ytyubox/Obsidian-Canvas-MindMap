@@ -30,7 +30,6 @@ import {
 import { CanvasEdgeData } from "obsidian/canvas";
 import { parseMarkdownToTree, TreeNode } from "./Tree";
 import { stringify } from "querystring";
-import { inspect } from "util"; // or directly
 
 const createEdge = async (node1: any, node2: any, canvas: any) => {
 	addEdge(
