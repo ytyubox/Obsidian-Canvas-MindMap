@@ -354,6 +354,20 @@ export default class CanvasMindMap extends Plugin {
 			},
 		});
 		this.addCommand({
+			id: "move-to-card",
+			name: "move to card",
+			checkCallback: (checking: boolean) => {
+				const canvasView =
+					this.app.workspace.getActiveViewOfType(ItemView);
+				console.log(canvasView?.getViewType());
+				if (canvasView?.getViewType() !== "canvas") {
+					return false;
+				}
+
+				return true;
+			},
+		});
+		this.addCommand({
 			id: "split-card-into-grid",
 			name: "Split card into grid",
 			checkCallback: (checking: boolean) => {
