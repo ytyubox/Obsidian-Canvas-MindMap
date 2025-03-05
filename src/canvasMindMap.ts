@@ -361,6 +361,8 @@ export default class CanvasMindMap extends Plugin {
 			id: "move-to-card",
 			name: "move to card",
 			checkCallback: (checking: boolean) => {
+				const leaf = this.app.workspace.activeLeaf;
+				console.log(leaf);
 				const canvasView =
 					this.app.workspace.getActiveViewOfType(ItemView);
 				if (canvasView?.getViewType() !== "canvas") {
