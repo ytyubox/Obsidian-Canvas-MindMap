@@ -4,7 +4,7 @@ import {
 	CanvasNode,
 	ItemView,
 	Notice,
-	Editor
+	Editor,
 	Plugin,
 	requireApiVersion,
 	SettingTab,
