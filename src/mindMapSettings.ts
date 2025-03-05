@@ -85,7 +85,7 @@ export class MindMapSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl("h2", { text: "Canvas MindMap" });
+		containerEl.createEl("h2", { text: "Canvas MindMap YU" });
 
 		this.useNavigateHotkeySetting(containerEl, this.plugin.settings);
 		this.createHotkeySetting(containerEl, this.plugin.settings);
