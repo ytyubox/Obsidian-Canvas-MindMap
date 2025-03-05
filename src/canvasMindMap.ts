@@ -367,6 +367,7 @@ export default class CanvasMindMap extends Plugin {
 						//@ts-ignore
 						const selectedText =
 							this.app.workspace.activeLeaf?.view.sourceModeView?.editor.getSelection();
+						console.log("selectedText", selectedText);
 					});
 				});
 			})
