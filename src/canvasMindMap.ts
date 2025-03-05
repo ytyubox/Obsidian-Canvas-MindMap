@@ -355,6 +355,19 @@ export default class CanvasMindMap extends Plugin {
 				return true;
 			},
 		});
+
+		this.registerEvent(
+			this.app.workspace.on("editor-menu", (menu) => {
+				menu.addItem((item) => {
+					item.setTitle("name").onClick(() => {
+						//@ts-ignore
+						// this.app.commands.executeCommandById(command.id);
+						console.log("clicked");
+					});
+				});
+			})
+		);
+
 		this.addCommand({
 			id: "move-to-card",
 			name: "move to card",
@@ -382,7 +395,7 @@ export default class CanvasMindMap extends Plugin {
 				// console.log("selected", selected);
 
 				const selectedCard = selected.values().next().value;
-				console.log("selectedCard", selectedCard._activeEditor);
+				console.log("selectedCard", selectedCard);
 				console.log(inspect(selectedCard));
 
 				// get type
