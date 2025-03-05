@@ -384,7 +384,7 @@ export default class CanvasMindMap extends Plugin {
 				console.log(selectedCard);
 				// get type
 				const selectedType =
-					selectedCard.file == undefined ? "text" : "file";
+					selectedCard.file == undefined ? "card" : "file";
 				console.log("selectedType", selectedType);
 				const selectedText = selectedCard.text;
 				// console.log("selectedText", selectedText);
