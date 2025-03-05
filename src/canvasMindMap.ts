@@ -380,6 +380,7 @@ export default class CanvasMindMap extends Plugin {
 					return new Notice("no selected card") && false;
 				}
 				const doc = selected.values().next().value.editor;
+				console.log("doc", doc);
 				const selectedText = doc.getSelection();
 				console.log("selectedText", selectedText);
 				const trimmedContent = selectedText.trim();
