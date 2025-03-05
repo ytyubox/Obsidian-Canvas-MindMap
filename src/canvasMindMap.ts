@@ -366,7 +366,6 @@ export default class CanvasMindMap extends Plugin {
 				editor: Editor,
 				ctx: MarkdownView
 			) => {
-				console.log(editor.getSelection());
 				const canvasView =
 					this.app.workspace.getActiveViewOfType(ItemView);
 				if (canvasView?.getViewType() !== "canvas") {
@@ -385,8 +384,15 @@ export default class CanvasMindMap extends Plugin {
 					console.log("no selected card");
 					return new Notice("no selected card") && false;
 				}
-				const doc = selected.values().next().value.editor;
-				console.log("doc", doc);
+
+				const selectedText = editor.getSelection();
+				createChildCardNode(
+					canvas,
+					selectedText,
+					selectedText,
+					selectedText,
+					0
+				);
 
 				return true;
 			},
