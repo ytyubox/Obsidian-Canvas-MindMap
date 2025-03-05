@@ -364,7 +364,7 @@ export default class CanvasMindMap extends Plugin {
 					return false;
 				}
 				// get selected text
-				console.log(canvasView);
+				console.log(canvasView?.canvas);
 				return true;
 			},
 		});
