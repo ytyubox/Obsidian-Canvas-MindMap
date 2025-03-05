@@ -363,23 +363,23 @@ export default class CanvasMindMap extends Plugin {
 					return false;
 				}
 				if (checking) return true;
-				console.log("loaded");
+				// console.log("loaded");
 				// @ts-ignore
 				const canvas = canvasView?.canvas;
 				if (canvas === undefined) {
 					console.log("no canvas");
 					return new Notice("no canvas") && false;
 				}
-				console.log("canvas:", canvas);
+				// console.log("canvas:", canvas);
 				const selected = canvas.selection;
 				if (selected.size === 0) {
 					console.log("no selected card");
 					return new Notice("no selected card") && false;
 				}
 				// get selected text
-				console.log("selected", selected);
+				// console.log("selected", selected);
 				const selectedCard = selected.values().next().value;
-				console.log("selectedCard", selectedCard);
+				// console.log("selectedCard", selectedCard);
 				const selectedText = selectedCard.text;
 				console.log("selectedText", selectedText);
 				return true;
