@@ -388,7 +388,7 @@ export default class CanvasMindMap extends Plugin {
 				const selectedText = editor.getSelection();
 				createChildCardNode(
 					canvas,
-					selectedText,
+					selected,
 					selectedText,
 					selectedText,
 					0
