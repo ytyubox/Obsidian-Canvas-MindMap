@@ -366,8 +366,7 @@ export default class CanvasMindMap extends Plugin {
 				editor: Editor,
 				ctx: MarkdownView
 			) => {
-				const leaf = this.app.workspace.activeLeaf;
-				console.log(leaf);
+				console.log(editor.getSelection());
 				const canvasView =
 					this.app.workspace.getActiveViewOfType(ItemView);
 				if (canvasView?.getViewType() !== "canvas") {
