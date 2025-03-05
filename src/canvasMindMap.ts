@@ -366,10 +366,6 @@ export default class CanvasMindMap extends Plugin {
 				if (canvasView?.getViewType() !== "canvas") {
 					return false;
 				}
-				// @ts-ignore
-				const mv = this.app.workspace.activeLeaf.view as MarkdownView;
-				console.log("mv", mv);
-				console.log("mv", mv.editor.getSelection());
 				if (checking) return true;
 				// console.log("loaded");
 				// @ts-ignore
