@@ -360,7 +360,11 @@ export default class CanvasMindMap extends Plugin {
 		this.addCommand({
 			id: "move-to-card",
 			name: "move to card",
-			checkCallback: (checking: boolean) => {
+			editorCheckCallback: (
+				checking: boolean,
+				editor: Editor,
+				ctx: MarkdownView
+			) => {
 				const leaf = this.app.workspace.activeLeaf;
 				console.log(leaf);
 				const canvasView =
