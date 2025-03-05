@@ -356,22 +356,6 @@ export default class CanvasMindMap extends Plugin {
 			},
 		});
 
-		this.registerEvent(
-			this.app.workspace.on("editor-menu", (menu) => {
-				menu.addItem((item) => {
-					item.setTitle("name").onClick(() => {
-						//@ts-ignore
-						// this.app.commands.executeCommandById(command.id);
-						console.log("clicked");
-						// get selected text
-						//@ts-ignore
-						const selectedText = this.app.workspace.activeEditor;
-						console.log("selectedText", selectedText);
-					});
-				});
-			})
-		);
-
 		this.addCommand({
 			id: "move-to-card",
 			name: "move to card",
@@ -395,18 +379,11 @@ export default class CanvasMindMap extends Plugin {
 					console.log("no selected card");
 					return new Notice("no selected card") && false;
 				}
-				// get selected text
-				// console.log("selected", selected);
+				const doc = selected.values().next().value.editor;
+				const selectedText = doc.getSelection();
+				const trimmedContent = selectedText.trim();
+				return trimmedContent.split("\n");
 
-				const selectedCard = selected.values().next().value;
-				console.log("selectedCard", selectedCard);
-
-				// get type
-				const selectedType =
-					selectedCard.file == undefined ? "card" : "file";
-				console.log("selectedType", selectedType);
-				const selectedText = selectedCard.text;
-				// console.log("selectedText", selectedText);
 				return true;
 			},
 		});
