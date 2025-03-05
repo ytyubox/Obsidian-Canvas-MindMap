@@ -377,7 +377,7 @@ export default class CanvasMindMap extends Plugin {
 					return new Notice("no selected card") && false;
 				}
 				// get selected text
-				console.log(selected);
+				console.log("selected", selected);
 				return true;
 			},
 		});
