@@ -362,6 +362,7 @@ export default class CanvasMindMap extends Plugin {
 				if (canvasView?.getViewType() !== "canvas") {
 					return false;
 				}
+				console.log("loaded");
 				// @ts-ignore
 				const selected = canvasView?.canvas?.selected;
 				if (selected === undefined) {
