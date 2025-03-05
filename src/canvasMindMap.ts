@@ -400,7 +400,6 @@ export default class CanvasMindMap extends Plugin {
 
 				const selectedCard = selected.values().next().value;
 				console.log("selectedCard", selectedCard);
-				console.log(inspect(selectedCard));
 
 				// get type
 				const selectedType =
