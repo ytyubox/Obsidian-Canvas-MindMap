@@ -359,7 +359,6 @@ export default class CanvasMindMap extends Plugin {
 			checkCallback: (checking: boolean) => {
 				const canvasView =
 					this.app.workspace.getActiveViewOfType(ItemView);
-				console.log(canvasView?.getViewType());
 				if (canvasView?.getViewType() !== "canvas") {
 					return false;
 				}
