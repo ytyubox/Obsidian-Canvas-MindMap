@@ -363,7 +363,7 @@ export default class CanvasMindMap extends Plugin {
 					return false;
 				}
 				// @ts-ignore
-				const selected = canvasView?.canvas?.selected[0];
+				const selected = canvasView?.canvas?.selected;
 				if (selected === undefined) {
 					return new Notice("no selected card") && false;
 				}
