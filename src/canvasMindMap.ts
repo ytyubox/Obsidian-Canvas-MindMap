@@ -9,6 +9,7 @@ import {
 	requireApiVersion,
 	SettingTab,
 	TFile,
+	MarkdownView,
 } from "obsidian";
 import { around } from "monkey-around";
 import {
