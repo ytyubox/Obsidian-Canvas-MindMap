@@ -366,6 +366,7 @@ export default class CanvasMindMap extends Plugin {
 				// @ts-ignore
 				const canvas = canvasView?.canvas;
 				// get selected text
+				console.log(canvas.selection);
 				return true;
 			},
 		});
