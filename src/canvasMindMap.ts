@@ -363,6 +363,7 @@ export default class CanvasMindMap extends Plugin {
 				if (canvasView?.getViewType() !== "canvas") {
 					return false;
 				}
+				// get selected text
 
 				return true;
 			},
