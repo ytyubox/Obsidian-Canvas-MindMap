@@ -381,9 +381,6 @@ export default class CanvasMindMap extends Plugin {
 				}
 				const doc = selected.values().next().value.editor;
 				console.log("doc", doc);
-				const selectedText = doc.getSelection();
-				console.log("selectedText", selectedText);
-				const trimmedContent = selectedText.trim();
 
 				return true;
 			},
