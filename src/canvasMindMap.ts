@@ -378,6 +378,10 @@ export default class CanvasMindMap extends Plugin {
 				}
 				// get selected text
 				console.log("selected", selected);
+				const selectedCard = selected.values().next().value;
+				console.log("selectedCard", selectedCard);
+				const selectedText = selectedCard.text;
+				console.log("selectedText", selectedText);
 				return true;
 			},
 		});
