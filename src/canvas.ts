@@ -56,6 +56,7 @@ export default class BetterCanvas extends Plugin {
 			}
 
 			leaf.openFile(file);
+			this.app.workspace.setActiveLeaf(leaf);
 			return;
 
 			// if (splitViews.length < 2) {
