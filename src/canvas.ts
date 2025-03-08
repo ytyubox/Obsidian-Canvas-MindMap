@@ -38,7 +38,6 @@ export default class BetterCanvas extends Plugin {
 				return;
 			}
 			if (file?.extension !== "md") {
-				console.log("not a markdown file");
 				return;
 			}
 			const canvas = this.app.workspace.getLeavesOfType("canvas");
