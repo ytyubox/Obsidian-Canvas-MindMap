@@ -17,7 +17,6 @@ import {
 export default class BetterCanvas extends Plugin {
 	isActive: boolean = false;
 	async onload() {
-		console.log("loaded");
 		this.isActive = true;
 		this.registerCommands();
 	}
