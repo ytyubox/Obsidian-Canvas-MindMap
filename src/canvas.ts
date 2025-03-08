@@ -51,6 +51,7 @@ export default class BetterCanvas extends Plugin {
 			}
 
 			const markdown = this.app.workspace.getLeavesOfType("markdown");
+			console.log("markdown", markdown);
 			if (markdown.length > 1) {
 				return new Notice("more than 1 markdown view");
 			}
