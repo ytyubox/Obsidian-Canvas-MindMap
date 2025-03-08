@@ -29,14 +29,6 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	registerCommands() {
-		this.app.workspace.on(
-			"active-leaf-change",
-			(leaf: WorkspaceLeaf | null) => {
-				if (!this.isActive) return;
-				console.log("active-leaf-change", leaf);
-			}
-		);
-
 		this.app.workspace.on("file-open", (file: TFile | null) => {
 			if (!this.isActive) return;
 			console.log("file-open", file?.extension);
