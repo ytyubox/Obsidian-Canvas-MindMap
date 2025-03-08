@@ -23,7 +23,6 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	onunload() {
-		console.log("BetterCanvas: unloaded");
 		this.isActive = false;
 		this.app.workspace;
 	}
