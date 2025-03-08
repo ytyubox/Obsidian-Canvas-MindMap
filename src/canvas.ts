@@ -49,14 +49,14 @@ export default class BetterCanvas extends Plugin {
 				console.log("leaf", leaf);
 			});
 
-			if (splitViews.length < 2) {
-				return new Notice("less than 2 split views");
-			}
-			console.log("split views", splitViews);
-			const activeFile = this.app.workspace.getActiveFile();
-			if (activeFile === null) {
-				return new Notice("no active file");
-			}
+			// if (splitViews.length < 2) {
+			// 	return new Notice("less than 2 split views");
+			// }
+			// console.log("split views", splitViews);
+			// const activeFile = this.app.workspace.getActiveFile();
+			// if (activeFile === null) {
+			// 	return new Notice("no active file");
+			// }
 			console.log("active file", activeFile);
 		});
 	}
