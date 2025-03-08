@@ -56,7 +56,7 @@ export default class BetterCanvas extends Plugin {
 			}
 
 			if (markdown.length === 0) {
-				this.app.workspace.splitActiveLeaf(Side.Right);
+				this.app.workspace.splitActiveLeaf("right");
 			return;
 			console.log("canvas view", canvasView);
 
