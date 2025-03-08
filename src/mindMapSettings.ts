@@ -52,7 +52,7 @@ export const DEFAULT_SETTINGS: MindMapSettings = {
 };
 
 export class MindMapSettingTab extends PluginSettingTab {
-	plugin: CanvasMindMap;
+	plugin: BetterCanvas;
 
 	updateSettings(key: any, value: any): void {
 		this.plugin.settings = {
