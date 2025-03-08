@@ -71,4 +71,5 @@ export default class BetterCanvas extends Plugin {
 			// console.log("active file", activeFile);
 		});
 	}
+	
 }
