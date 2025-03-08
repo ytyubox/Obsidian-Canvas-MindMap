@@ -37,9 +37,7 @@ export default class BetterCanvas extends Plugin {
 			if (canvasView && canvasView.getViewType() !== "canvas") {
 				return;
 			}
-			if (file?.extension !== "md") {
-				return;
-			}
+			if (file?.extension !== "md") return;
 			const canvas = this.app.workspace.getLeavesOfType("canvas");
 			if (canvas.length !== 1) {
 				return new Notice("more than 1 canvas view");
