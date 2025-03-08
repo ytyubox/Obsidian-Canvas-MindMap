@@ -75,7 +75,7 @@ export class MindMapSettingTab extends PluginSettingTab {
 		true
 	);
 
-	constructor(app: App, plugin: CanvasMindMap) {
+	constructor(app: App, plugin: BetterCanvas) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
