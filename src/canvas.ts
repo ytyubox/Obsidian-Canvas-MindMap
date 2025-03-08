@@ -45,9 +45,9 @@ export default class BetterCanvas extends Plugin {
 				return new Notice("not a canvas view");
 			}
 			console.log("canvas view", canvasView);
-		 this.app.workspace.iterateAllLeaves((leaf: WorkspaceLeaf) => {
-			 console.log("leaf", leaf);
-			};)
+			this.app.workspace.iterateAllLeaves((leaf: WorkspaceLeaf) => {
+				console.log("leaf", leaf);
+			});
 
 			if (splitViews.length < 2) {
 				return new Notice("less than 2 split views");
