@@ -44,9 +44,9 @@ export default class BetterCanvas extends Plugin {
 			if (canvasView?.getViewType() !== "canvas") {
 				return new Notice("not a canvas view");
 			}
-			// this.app.workspace.iterateAllLeaves((leaf: WorkspaceLeaf) => {
-			// 	console.log("leaf", leaf);
-			// });
+			this.app.workspace.iterateAllLeaves((leaf: WorkspaceLeaf) => {
+				console.log("leaf", leaf.getViewState());
+			});
 			return;
 			console.log("canvas view", canvasView);
 
