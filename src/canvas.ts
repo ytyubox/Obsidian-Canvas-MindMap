@@ -46,7 +46,15 @@ export default class BetterCanvas extends Plugin {
 				return new Notice("not a canvas view");
 			}
 			const canvas = this.app.workspace.getLeavesOfType("canvas");
+			if (canvas.length !== 1) {
+				return new Notice("more than 1 canvas view");
+			}
+
 			const markdown = this.app.workspace.getLeavesOfType("markdown");
+			if (markdown.length > 1) {
+				return new Notice("more than 1 markdown view");
+			}
+
 			console.log("leaves", leaves);
 			return;
 			console.log("canvas view", canvasView);
