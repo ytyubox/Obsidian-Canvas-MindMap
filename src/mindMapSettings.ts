@@ -1,5 +1,5 @@
 import { App, debounce, Platform, PluginSettingTab, Setting } from "obsidian";
-import CanvasMindMap from "./canvas";
+import BetterCanvas from "./canvas";
 
 type ModifierKey = "Alt" | "Mod" | "Shift";
 
