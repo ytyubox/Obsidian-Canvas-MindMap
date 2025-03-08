@@ -48,66 +48,6 @@ const createEdge = async (node1: any, node2: any, canvas: any) => {
 	);
 };
 
-const navigate = (canvas: Canvas, direction: string) => {
-	const currentSelection = canvas.selection;
-	if (currentSelection.size !== 1) return;
-
-	// Check if the selected node is editing
-	if (currentSelection.values().next().value.isEditing) return;
-
-	const selectedItem = currentSelection.values().next().value as CanvasNode;
-	const viewportNodes = canvas.getViewportNodes();
-	const { x, y, width, height } = selectedItem;
-
-	canvas.deselectAll();
-
-	const isVertical = direction === "top" || direction === "bottom";
-	const comparePrimary = isVertical
-		? (a: CanvasNode, b: CanvasNode) => a.y - b.y
-		: (a: CanvasNode, b: CanvasNode) => a.x - b.x;
-	const compareSecondary = isVertical
-		? (a: CanvasNode, b: CanvasNode) => a.x - b.x
-		: (a: CanvasNode, b: CanvasNode) => a.y - b.y;
-	const filterCondition = (node: CanvasNode) => {
-		const inRange = isVertical
-			? node.x < x + width / 2 && node.x + node.width > x + width / 2
-			: node.y < y + height / 2 && node.y + node.height > y + height / 2;
-		const directionCondition =
-			direction === "top"
-				? node.y < y
-				: direction === "bottom"
-				? node.y > y
-				: direction === "left"
-				? node.x < x
-				: node.x > x;
-		return inRange && directionCondition;
-	};
-
-	const filteredNodes = viewportNodes.filter(filterCondition);
-	const sortedNodes =
-		filteredNodes.length > 0
-			? filteredNodes.sort(comparePrimary)
-			: viewportNodes
-					.filter((node: CanvasNode) =>
-						direction === "top"
-							? node.y < y
-							: direction === "bottom"
-							? node.y > y
-							: direction === "left"
-							? node.x < x
-							: node.x > x
-					)
-					.sort(compareSecondary);
-	const nextNode = sortedNodes[0];
-
-	if (nextNode) {
-		canvas.selectOnly(nextNode);
-		canvas.zoomToSelection();
-	}
-
-	return nextNode;
-};
-
 const createFloatingNode = (canvas: any, direction: string) => {
 	let selection = canvas.selection;
 
