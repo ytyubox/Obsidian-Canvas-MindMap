@@ -46,7 +46,7 @@ export default class BetterCanvas extends Plugin {
 				return new Notice("not a canvas view");
 			}
 			this.app.workspace.ensureSideLeaf("canvas", "right", {
-				split: ture,
+				split: true,
 			});
 			return;
 			console.log("canvas view", canvasView);
