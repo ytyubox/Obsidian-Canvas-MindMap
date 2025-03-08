@@ -56,9 +56,9 @@ export default class BetterCanvas extends Plugin {
 				return new Notice("more than 1 markdown view");
 			}
 
-			if (markdown.length === 0) {
+			if (markdown.length === 0 && file) {
 				const leaf = this.app.workspace.splitActiveLeaf("vertical");
-				await leaf.openFile(file);
+				leaf.openFile(file);
 			}
 
 			return;
