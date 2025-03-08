@@ -46,7 +46,7 @@ export default class BetterCanvas extends Plugin {
 				canvasView &&
 				canvasView.getViewType() !== "canvas" &&
 				file &&
-				file.extension === "md"
+				file.extension === "canvas"
 			) {
 				return;
 			}
