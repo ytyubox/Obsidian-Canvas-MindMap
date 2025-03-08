@@ -45,7 +45,7 @@ export default class BetterCanvas extends Plugin {
 			if (canvasView?.getViewType() !== "canvas") {
 				return new Notice("not a canvas view");
 			}
-			this.app.workspace.ensureSideLeaf("canvas");
+			this.app.workspace.ensureSideLeaf("canvas", Slide.Right);
 			return;
 			console.log("canvas view", canvasView);
 
