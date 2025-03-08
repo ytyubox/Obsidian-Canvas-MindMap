@@ -54,6 +54,7 @@ export default class BetterCanvas extends Plugin {
 			if (activeFile === null) {
 				return new Notice("no active file");
 			}
+			console.log("active file", activeFile);
 		});
 	}
 }
