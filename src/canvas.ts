@@ -54,6 +54,8 @@ export default class BetterCanvas extends Plugin {
 			var leaf: WorkspaceLeaf;
 			if (markdown.length === 0 && file) {
 				leaf = this.app.workspace.splitActiveLeaf("vertical");
+			} else {
+				leaf = markdown[0];
 			}
 
 			leaf.openFile(file);
