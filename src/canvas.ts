@@ -47,8 +47,8 @@ export default class BetterCanvas extends Plugin {
 			// check if the file is the same as the selected file
 			const selected = Array.from(selection)[0];
 			const file = this.app.workspace.getActiveFile();
-)
-			if (file && selected.file.path !== file.path) {
+
+			if (file && selected.file?.path !== file.path) {
 				console.log("file is not the same as selected file");
 				return;
 			}
