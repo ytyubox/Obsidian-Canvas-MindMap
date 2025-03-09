@@ -29,9 +29,9 @@ export default class BetterCanvas extends Plugin {
 	registerCommands() {
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
-			const canvas = this.app.workspace.getActiveViewOfType(ItemView);
+			const canvas = this.app.workspace.getLeavesOfType("canvas");
 
-			const leaf = canvas;
+			const leaf = canvas[0];
 			console.log(leaf);
 		});
 
