@@ -44,7 +44,8 @@ export default class BetterCanvas extends Plugin {
 			if (selection.size === 0) {
 				return;
 			}
-			// check if the editor file is the same as the selected file
+			// check if the file is the same as the selected file
+			const editorFile: TFile = editor;
 		});
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
