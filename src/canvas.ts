@@ -31,6 +31,7 @@ export default class BetterCanvas extends Plugin {
 	registerCommands() {
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
+			console.log("Selection", editor.getSelection());
 			if (editor.getSelection.length === 0) {
 				return new Notice("no selection");
 			}
