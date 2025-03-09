@@ -47,13 +47,14 @@ export default class BetterCanvas extends Plugin {
 			// check if the file is the same as the selected file
 			const selected = Array.from(selection)[0];
 			const file = this.app.workspace.getActiveFile();
-			if (file && selected.file.path === file.path) {
-				menu.addItem((item) => {
-					item.setTitle("Open in markdown");
-					item.setIcon("open-in-app");
-					item.onClick(() => {});
-				});
+			if (file && selected.file.path !== file.path) {
+				console.log("file is not the same as selected file");
 			}
+			menu.addItem((item) => {
+				item.setTitle("Open in markdown");
+				item.setIcon("open-in-app");
+				item.onClick(() => {});
+			});
 		});
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
