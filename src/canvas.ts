@@ -27,6 +27,19 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	registerCommands() {
+		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
+			if (!this.isActive) return;
+			if (editor.view instanceof MarkdownView) {
+				menu.addItem((item) => {
+					item.setIcon("canvas");
+					item.setTitle("Open in Canvas");
+					item.onClick(() => {
+						this.openInCanvas(editor);
+					});
+				});
+			}
+		});
+	}
 		this.app.workspace.on("file-open", (file: TFile | null) => {
 			if (!this.isActive) return;
 
