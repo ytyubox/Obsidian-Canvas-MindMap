@@ -51,9 +51,7 @@ export default class BetterCanvas extends Plugin {
 				menu.addItem((item) => {
 					item.setTitle("Open in markdown");
 					item.setIcon("open-in-app");
-					item.onClick(() => {
-						this.app.workspace.openLinkText(file.path);
-					});
+					item.onClick(() => {});
 				});
 			}
 		});
