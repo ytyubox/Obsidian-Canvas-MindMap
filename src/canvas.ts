@@ -29,7 +29,8 @@ export default class BetterCanvas extends Plugin {
 	registerCommands() {
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
-			if (editor.view instanceof MarkdownView) {
+			console.log(editor.getSelection());
+			if (false) {
 				menu.addItem((item) => {
 					item.setIcon("canvas");
 					item.setTitle("card");
