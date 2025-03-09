@@ -39,8 +39,11 @@ export default class BetterCanvas extends Plugin {
 			//@ts-ignore
 			const canvas: Canvas = canvasLeaf[0].view.canvas;
 			if (!canvas) return;
-			const selected: Set<CanvasNode> = canvas.selection;
+			const selection: Set<CanvasNode> = canvas.selection;
 
+			if (selection.size === 0) {
+				return;
+			}
 			// check if the editor file is the same as the selected file
 		});
 
