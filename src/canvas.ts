@@ -13,6 +13,7 @@ import {
 	MarkdownFileInfo,
 	Side,
 	Canvas,
+	CanvasNode,
 } from "obsidian";
 
 export default class BetterCanvas extends Plugin {
