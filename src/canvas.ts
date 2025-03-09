@@ -45,7 +45,17 @@ export default class BetterCanvas extends Plugin {
 				return;
 			}
 			// check if the file is the same as the selected file
-			const editorFile: TFile = editor;
+			const selected = Array.from(selection)[0];
+			const file = this.app.workspace.getActiveFile();
+			if (file && selected.file.path === file.path) {
+				menu.addItem((item) => {
+					item.setTitle("Open in markdown");
+					item.setIcon("open-in-app");
+					item.onClick(() => {
+						this.app.workspace.openLinkText(file.path);
+					});
+				});
+			}
 		});
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
