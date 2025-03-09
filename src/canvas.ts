@@ -32,9 +32,9 @@ export default class BetterCanvas extends Plugin {
 			if (editor.view instanceof MarkdownView) {
 				menu.addItem((item) => {
 					item.setIcon("canvas");
-					item.setTitle("Open in Canvas");
+					item.setTitle("card");
 					item.onClick(() => {
-						this.openInCanvas(editor);
+						console.log("clicked");
 					});
 				});
 			}
