@@ -12,6 +12,7 @@ import {
 	Tasks,
 	MarkdownFileInfo,
 	Side,
+	Canvas,
 } from "obsidian";
 
 export default class BetterCanvas extends Plugin {
@@ -29,11 +30,16 @@ export default class BetterCanvas extends Plugin {
 	registerCommands() {
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
-			const canvas = this.app.workspace.getLeavesOfType("canvas");
+			const canvasLeaf = this.app.workspace.getLeavesOfType("canvas");
+			if (canvasLeaf.length !== 1) {
+				return new Notice("more than 1 canvas view");
+			}
 
-			const leaf = canvas[0];
 			//@ts-ignore
-			console.log("leaf", leaf.view.canvas);
+			const canvas: Canvas = canvasLeaf[0].view.canvas;
+			if (!canvas) return;
+			const selected = canvas.selection();
+			// check if the editor file is the same as the canvas file
 		});
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
