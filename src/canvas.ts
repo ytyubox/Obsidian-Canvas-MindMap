@@ -32,7 +32,8 @@ export default class BetterCanvas extends Plugin {
 			const canvas = this.app.workspace.getLeavesOfType("canvas");
 
 			const leaf = canvas[0];
-			console.log("leaf", leaf.view);
+			//@ts-ignore
+			console.log("leaf", leaf.view.canvas);
 		});
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
