@@ -33,6 +33,8 @@ export default class BetterCanvas extends Plugin {
 			if (canvas.length !== 1) {
 				return new Notice("more than 1 canvas view");
 			}
+			const leaf = canvas[0].getViewState();
+			console.log() canvas[0].getViewState();
 			if (false) {
 				menu.addItem((item) => {
 					item.setIcon("canvas");
