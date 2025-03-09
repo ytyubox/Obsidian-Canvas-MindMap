@@ -31,6 +31,9 @@ export default class BetterCanvas extends Plugin {
 	registerCommands() {
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
+			if (editor.setSelection.isEmpty) {
+				return;
+			}
 			const canvasLeaf = this.app.workspace.getLeavesOfType("canvas");
 			if (canvasLeaf.length !== 1) {
 				return new Notice("more than 1 canvas view");
@@ -48,14 +51,17 @@ export default class BetterCanvas extends Plugin {
 			const selected = Array.from(selection)[0];
 			const file = this.app.workspace.getActiveFile();
 
-			if (file && selected.file?.path !== file.path) {
+			if (file && selected.file.path !== file.path) {
 				console.log("file is not the same as selected file");
 				return;
 			}
 			menu.addItem((item) => {
 				item.setTitle("Open in markdown");
 				item.setIcon("open-in-app");
-				item.onClick(() => {});
+				item.onClick(() => {
+					// create a new markdown file
+					// copy the
+				});
 			});
 		});
 
