@@ -32,7 +32,7 @@ export default class BetterCanvas extends Plugin {
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
 			if (editor.getSelection.length === 0) {
-				return;
+				return new Notice("no selection");
 			}
 			const canvasLeaf = this.app.workspace.getLeavesOfType("canvas");
 			if (canvasLeaf.length !== 1) {
