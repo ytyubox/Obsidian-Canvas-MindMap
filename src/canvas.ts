@@ -49,6 +49,7 @@ export default class BetterCanvas extends Plugin {
 			const file = this.app.workspace.getActiveFile();
 			if (file && selected.file.path !== file.path) {
 				console.log("file is not the same as selected file");
+				return;
 			}
 			menu.addItem((item) => {
 				item.setTitle("Open in markdown");
