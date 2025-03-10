@@ -95,3 +95,4 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 }
+var file: TFile;
