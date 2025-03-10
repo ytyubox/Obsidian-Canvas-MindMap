@@ -70,6 +70,7 @@ export default class BetterCanvas extends Plugin {
 					item.onClick(() => {
 						// create a new markdown file
 						// copy the
+						console.log("split to", canvas.view.file?.name);
 					});
 				});
 			}
