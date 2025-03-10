@@ -52,6 +52,7 @@ export default class BetterCanvas extends Plugin {
 				if (!canvas) return;
 				console.log("canvas", canvas.nodes);
 				const fileNode = Array(canvas.nodes.values);
+				console.log("fileNode", fileNode);
 
 				const selection: Set<CanvasNode> = canvas.selection;
 
