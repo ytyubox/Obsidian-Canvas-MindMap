@@ -23,7 +23,6 @@ export default class BetterCanvas extends Plugin {
 	async onload() {
 		this.isActive = true;
 		this.registerCommands();
-		this.registerAllEvents();
 	}
 
 	onunload() {
