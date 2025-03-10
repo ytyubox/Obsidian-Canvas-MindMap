@@ -110,6 +110,7 @@ export default class BetterCanvas extends Plugin {
 			return;
 		});
 	}
+	private fromCanvasToSplitMarkdown(file: TFile | null) {}
 
 	private getNodeFromFile(canvas: Canvas, file: TFile): CanvasNode | null {
 		var node: CanvasNode | null = null;
