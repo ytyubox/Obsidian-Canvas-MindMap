@@ -23,6 +23,7 @@ export default class BetterCanvas extends Plugin {
 	async onload() {
 		this.isActive = true;
 		this.registerCommands();
+		this.registerAllEvents();
 	}
 
 	onunload() {
@@ -30,7 +31,6 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	registerCommands() {
-		this.registerAllEvents();
 		this.editormenu = this.app.workspace.on(
 			"editor-menu",
 			(menu: Menu, editor: Editor) => {
