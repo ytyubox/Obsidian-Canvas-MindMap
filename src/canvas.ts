@@ -85,29 +85,7 @@ export default class BetterCanvas extends Plugin {
 			if (!this.isActive) return;
 			console.log("file-open", file);
 
-			const canvasView = this.app.workspace.getActiveViewOfType(ItemView);
-			if (canvasView && canvasView.getViewType() !== "canvas") {
-				return;
-			}
-			if (file?.extension !== "md") return;
-			const canvas = this.app.workspace.getLeavesOfType("canvas");
-			if (canvas.length !== 1) {
-				return new Notice("more than 1 canvas view");
-			}
-
-			const markdown = this.app.workspace.getLeavesOfType("markdown");
-
-			if (markdown.length > 1) {
-				return new Notice("more than 1 markdown view");
-			}
-			var leaf: WorkspaceLeaf =
-				markdown.length === 0 && file
-					? this.app.workspace.splitActiveLeaf("vertical")
-					: markdown[0];
-
-			leaf.openFile(file);
-			this.app.workspace.setActiveLeaf(leaf, { focus: true });
-			return;
+			this.fromCanvasToSplitMarkdown(file);
 		});
 	}
 	private fromCanvasToSplitMarkdown(file: TFile | null) {
