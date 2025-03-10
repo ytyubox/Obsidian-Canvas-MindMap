@@ -109,6 +109,9 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 	findCurrentNode(canvas: Canvas, path: string) {
-		throw new Error("Method not implemented.");
+		const nodes = Array.from(canvas.nodes.values());
+		const node = nodes.find((node) => node.file?.path === path);
+		if (!node) return;
+		return node;
 	}
 }
