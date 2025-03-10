@@ -27,7 +27,7 @@ export default class BetterCanvas extends Plugin {
 
 	onunload() {
 		this.isActive = false;
-		this.app.workspace;
+		this.editormenu
 	}
 
 	registerCommands() {
@@ -102,4 +102,3 @@ export default class BetterCanvas extends Plugin {
 		this.app.workspace.on("layout-ready", () => {
 	}
 }
-var _file: TFile | null = null;
