@@ -29,6 +29,13 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	registerCommands() {
+		this.app.workspace.on(
+			"editor-drop",
+			(editor: Editor, data: DataTransfer) => {
+				if (!this.isActive) return;
+				console.log("editor drop", editor, data);
+			}
+		);
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
 			console.log("Selection", editor.getSelection());
