@@ -70,7 +70,7 @@ export default class BetterCanvas extends Plugin {
 					item.onClick(() => {
 						// create a new markdown file
 						console.log("split to", canvas.view.file?.name);
-						const currentNode = findCurrentNode(canvas, file?.path);
+						const currentNode = findCurrentNode(canvas, file.path);
 					});
 				});
 			}
