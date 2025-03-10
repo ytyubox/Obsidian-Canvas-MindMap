@@ -50,8 +50,8 @@ export default class BetterCanvas extends Plugin {
 				//@ts-ignore
 				const canvas: Canvas = canvasLeaf[0].view.canvas;
 				if (!canvas) return;
-				console.log("canvas", canvas);
-				console.log("canvas data", canvas.view.data);
+				console.log("canvas", canvas.nodes);
+
 				const selection: Set<CanvasNode> = canvas.selection;
 
 				if (selection.size === 0) {
