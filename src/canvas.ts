@@ -14,7 +14,7 @@ import {
 	Side,
 	Canvas,
 	CanvasNode,
-	CanvasFileNode
+	CanvasFileNode,
 	EventRef,
 } from "obsidian";
 
