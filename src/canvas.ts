@@ -54,8 +54,8 @@ export default class BetterCanvas extends Plugin {
 				console.log("canvas", canvas.nodes);
 				const fileNodes = Array(canvas.nodes.values()).map(
 					//@ts-ignore
-					
 					(node) => node.filePath
+				);
 				console.log("fileNodes", fileNodes);
 
 				const selection: Set<CanvasNode> = canvas.selection;
