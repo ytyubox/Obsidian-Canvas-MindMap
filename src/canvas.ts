@@ -70,7 +70,10 @@ export default class BetterCanvas extends Plugin {
 					item.onClick(() => {
 						// create a new markdown file
 						console.log("split to", canvas.view.file?.name);
-						const currentNode = findCurrentNode(canvas, file.path);
+						const currentNode = this.findCurrentNode(
+							canvas,
+							file.path
+						);
 					});
 				});
 			}
@@ -104,5 +107,8 @@ export default class BetterCanvas extends Plugin {
 			this.app.workspace.setActiveLeaf(leaf, { focus: true });
 			return;
 		});
+	}
+	findCurrentNode(canvas: Canvas, path: string) {
+		throw new Error("Method not implemented.");
 	}
 }
