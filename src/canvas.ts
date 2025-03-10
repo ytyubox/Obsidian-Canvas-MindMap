@@ -27,47 +27,49 @@ export default class BetterCanvas extends Plugin {
 
 	onunload() {
 		this.isActive = false;
-		this.editormenu
 	}
 
 	registerCommands() {
 		this.registerAllEvents();
-		this.editormenu = this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
-			if (!this.isActive) return;
-			console.log("Selection", editor.getSelection());
-			if (editor.getSelection().length === 0) {
-				return new Notice("no selection");
-			}
-			const canvasLeaf = this.app.workspace.getLeavesOfType("canvas");
-			if (canvasLeaf.length !== 1) {
-				return new Notice("more than 1 canvas view");
-			}
+		this.editormenu = this.app.workspace.on(
+			"editor-menu",
+			(menu: Menu, editor: Editor) => {
+				if (!this.isActive) return;
+				console.log("Selection", editor.getSelection());
+				if (editor.getSelection().length === 0) {
+					return new Notice("no selection");
+				}
+				const canvasLeaf = this.app.workspace.getLeavesOfType("canvas");
+				if (canvasLeaf.length !== 1) {
+					return new Notice("more than 1 canvas view");
+				}
 
-			//@ts-ignore
-			const canvas: Canvas = canvasLeaf[0].view.canvas;
-			if (!canvas) return;
-			const selection: Set<CanvasNode> = canvas.selection;
+				//@ts-ignore
+				const canvas: Canvas = canvasLeaf[0].view.canvas;
+				if (!canvas) return;
+				const selection: Set<CanvasNode> = canvas.selection;
 
-			if (selection.size === 0) {
-				return;
-			}
-			// check if the file is the same as the selected file
-			const selected = Array.from(selection)[0];
-			const file = this.app.workspace.getActiveFile();
-			//@ts-ignore
-			if (file && selected.file.path !== file.path) {
-				console.log("file is not the same as selected file");
-				return;
-			}
-			menu.addItem((item) => {
-				item.setTitle("Open in markdown");
-				item.setIcon("open-in-app");
-				item.onClick(() => {
-					// create a new markdown file
-					// copy the
+				if (selection.size === 0) {
+					return;
+				}
+				// check if the file is the same as the selected file
+				const selected = Array.from(selection)[0];
+				const file = this.app.workspace.getActiveFile();
+				//@ts-ignore
+				if (file && selected.file.path !== file.path) {
+					console.log("file is not the same as selected file");
+					return;
+				}
+				menu.addItem((item) => {
+					item.setTitle("Open in markdown");
+					item.setIcon("open-in-app");
+					item.onClick(() => {
+						// create a new markdown file
+						// copy the
+					});
 				});
-			});
-		});
+			}
+		);
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
 			if (!this.isActive) return;
@@ -99,6 +101,11 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 	registerAllEvents() {
-		this.app.workspace.on("layout-ready", () => {
+		this.app.workspace.on(
+			"layout-'quick-preview",
+			(layout: WorkspaceWindow) => {
+				console.log("layout", layout);
+			}
+		);
 	}
 }
