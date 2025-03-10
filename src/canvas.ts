@@ -104,5 +104,8 @@ export default class BetterCanvas extends Plugin {
 		this.app.workspace.on("quick-preview", (file: TFile, data: string) => {
 			console.log("quick-preview", file, data);
 		});
+		this.app.workspace.on("editor-change", (editor: Editor) => {
+			console.log("editor-change", editor);
+		});
 	}
 }
