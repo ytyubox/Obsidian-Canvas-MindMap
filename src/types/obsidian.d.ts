@@ -1,6 +1,6 @@
-import 'obsidian';
-import { MarkdownView, TFile } from 'obsidian';
-import { CanvasData } from 'obsidian/canvas';
+import "obsidian";
+import { MarkdownView, TFile } from "obsidian";
+import { CanvasData } from "obsidian/canvas";
 
 export interface CanvasNodeUnknownData {
 	id: string;
@@ -9,7 +9,7 @@ export interface CanvasNodeUnknownData {
 	[key: string]: any;
 }
 
-declare module 'obsidian' {
+declare module "obsidian" {
 	type CanvasNodeID = string;
 	type CanvasEdgeID = string;
 
@@ -146,7 +146,7 @@ declare module 'obsidian' {
 
 		getBBox(containing?: boolean): CanvasCoords;
 
-		moveTo({x, y}: { x: number, y: number }): void;
+		moveTo({ x, y }: { x: number; y: number }): void;
 
 		render(): void;
 	}
@@ -186,7 +186,7 @@ declare module 'obsidian' {
 		};
 
 		to: {
-			side: 'left' | 'right' | 'top' | 'bottom';
+			side: "left" | "right" | "top" | "bottom";
 			node: CanvasNode;
 		};
 
