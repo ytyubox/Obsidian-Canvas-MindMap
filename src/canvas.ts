@@ -83,10 +83,10 @@ export default class BetterCanvas extends Plugin {
 					console.log("file is not the same as selected file", node);
 					return;
 				}
-				console.log(canvas.view.file?.path);
+
 				menu.addItem((item) => {
 					item.setIcon("open-in-app");
-					item.setTitle("Split to");
+					item.setTitle("Split to " + canvas.view.file?.path ");
 					item.onClick(() => {
 						// create a new markdown file
 						console.log("split to", canvas.view.file?.name);
