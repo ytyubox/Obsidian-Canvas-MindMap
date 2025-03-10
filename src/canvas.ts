@@ -53,10 +53,7 @@ export default class BetterCanvas extends Plugin {
 				const file = this.app.workspace.getActiveFile();
 				if (!file) return;
 
-				var node: CanvasNode | null = this.getNodeFromFile(
-					canvas,
-					file
-				);
+				var node: CanvasNode = this.getNodeFromFile(canvas, file);
 
 				// check if the file is the same as the selected file
 
@@ -128,9 +125,12 @@ export default class BetterCanvas extends Plugin {
 				// check if the file is the same as the selected file
 				node = Array.from(selection)[0];
 			} else {
+				if (canvas.nodes.size === 0) {
+					node = this.addChildNode(canvas, null);
+				}
 				node = canvas.nodes.values().next().value;
 			}
 		}
-		return node;
+		return node!;
 	}
 }
