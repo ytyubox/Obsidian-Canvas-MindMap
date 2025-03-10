@@ -74,6 +74,7 @@ export default class BetterCanvas extends Plugin {
 							canvas,
 							file.path
 						);
+						if (!currentNode) return new Notice("no node found");
 					});
 				});
 			}
