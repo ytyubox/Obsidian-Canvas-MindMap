@@ -67,7 +67,8 @@ export default class BetterCanvas extends Plugin {
 						// check if the file is the same as the selected file
 						const selected = Array.from(selection)[0];
 						node = selected;
-					}
+					} else {
+						node = canvas.nodes.values().next().value;
 				}
 
 				const selection: Set<CanvasNode> = canvas.selection;
