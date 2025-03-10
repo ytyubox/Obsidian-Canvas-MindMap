@@ -59,18 +59,18 @@ export default class BetterCanvas extends Plugin {
 				// check if the file is the same as the selected file
 				const selected = Array.from(selection)[0];
 				const file = this.app.workspace.getActiveFile();
+				if (!file) return;
 				//@ts-ignore
 				if (file && selected.file.path !== file.path) {
 					console.log("file is not the same as selected file");
 					return;
 				}
 				menu.addItem((item) => {
-					item.setTitle("Split to " + canvas.view.file?.name);
 					item.setIcon("open-in-app");
 					item.onClick(() => {
 						// create a new markdown file
-						// copy the
 						console.log("split to", canvas.view.file?.name);
+						const currentNode = findCurrentNode(canvas, file?.path);
 					});
 				});
 			}
