@@ -130,11 +130,4 @@ export default class BetterCanvas extends Plugin {
 			return;
 		});
 	}
-	findCurrentNode(canvas: Canvas, path: string): CanvasNode | null {
-		const nodes = Array.from(canvas.nodes.values());
-		//@ts-ignore
-		const node = nodes.find((node) => node.file?.path === path);
-		if (!node) return null;
-		return node;
-	}
 }
