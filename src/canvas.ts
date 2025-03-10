@@ -96,4 +96,4 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 }
-var _file: TFile;
+var _file: TFile | null = null;
