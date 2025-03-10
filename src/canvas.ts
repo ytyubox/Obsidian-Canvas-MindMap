@@ -36,7 +36,7 @@ export default class BetterCanvas extends Plugin {
 			(menu: Menu, editor: Editor) => {
 				if (!this.isActive) return;
 				const selection = editor.getSelection();
-				console.log("Selection: ", selection, "text");
+				console.log("Selection: ", selection.length, "text");
 				if (selection.length === 0) {
 					return new Notice("no selection");
 				}
