@@ -50,6 +50,7 @@ export default class BetterCanvas extends Plugin {
 				//@ts-ignore
 				const canvas: Canvas = canvasLeaf[0].view.canvas;
 				if (!canvas) return;
+				console.log("canvas", canvas);
 				const selection: Set<CanvasNode> = canvas.selection;
 
 				if (selection.size === 0) {
@@ -64,7 +65,7 @@ export default class BetterCanvas extends Plugin {
 					return;
 				}
 				menu.addItem((item) => {
-					item.setTitle("Open in markdown");
+					// item.setTitle("Split to " + canvas.name);
 					item.setIcon("open-in-app");
 					item.onClick(() => {
 						// create a new markdown file
