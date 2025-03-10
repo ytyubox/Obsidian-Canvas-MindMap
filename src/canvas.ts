@@ -92,7 +92,7 @@ export default class BetterCanvas extends Plugin {
 					});
 				});
 			}
-		);
+		
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
 			if (!this.isActive) return;
