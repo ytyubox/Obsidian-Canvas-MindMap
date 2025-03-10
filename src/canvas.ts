@@ -14,10 +14,12 @@ import {
 	Side,
 	Canvas,
 	CanvasNode,
+	EventRef,
 } from "obsidian";
 
 export default class BetterCanvas extends Plugin {
 	isActive: boolean = false;
+	editormenu: EventRef;
 	async onload() {
 		this.isActive = true;
 		this.registerCommands();
@@ -29,7 +31,8 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	registerCommands() {
-		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
+		this.registerAllEvents();
+		editormenu = this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
 			console.log("Selection", editor.getSelection());
 			if (editor.getSelection().length === 0) {
@@ -94,6 +97,9 @@ export default class BetterCanvas extends Plugin {
 			this.app.workspace.setActiveLeaf(leaf, { focus: true });
 			return;
 		});
+	}
+	registerAllEvents() {
+		this.app.workspace.on("layout-ready", () => {
 	}
 }
 var _file: TFile | null = null;
