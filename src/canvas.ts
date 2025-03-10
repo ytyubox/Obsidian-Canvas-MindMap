@@ -29,25 +29,6 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	registerCommands() {
-		//@ts-ignore
-		this.app.workspace.on(
-			"editor-drop",
-			(editor: Editor, data: DataTransfer) => {
-				if (!this.isActive) return;
-				console.log("editor drop", editor, data);
-			}
-		);
-		this.app.workspace.on(
-			"editor-paste",
-			(editor: Editor, data: DataTransfer) => {
-				if (!this.isActive) return;
-				console.log("editor paste", editor, data);
-			}
-		);
-		this.app.workspace.on("editor-change", (editor: Editor) => {
-			if (!this.isActive) return;
-			console.log("editor change", editor);
-		});
 		this.app.workspace.on("editor-menu", (menu: Menu, editor: Editor) => {
 			if (!this.isActive) return;
 			console.log("Selection", editor.getSelection());
@@ -87,7 +68,7 @@ export default class BetterCanvas extends Plugin {
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
 			if (!this.isActive) return;
-
+			console.log("file-open", file);
 			const canvasView = this.app.workspace.getActiveViewOfType(ItemView);
 			if (canvasView && canvasView.getViewType() !== "canvas") {
 				return;
