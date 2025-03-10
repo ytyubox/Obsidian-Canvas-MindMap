@@ -73,8 +73,8 @@ export default class BetterCanvas extends Plugin {
 					);
 					item.onClick(() => {
 						// create a new markdown file
-						console.log("split to", canvas.view.file?.name);
-						// this.createMarkdownFile(selection);
+						const newFile = this.createMarkdownFile(selection);
+						this.replaceSelectionWithLink(newFile, editor);
 						// this.addChildNode(canvas, node);
 					});
 				});
