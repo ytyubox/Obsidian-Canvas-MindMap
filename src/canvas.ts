@@ -53,7 +53,10 @@ export default class BetterCanvas extends Plugin {
 				const file = this.app.workspace.getActiveFile();
 				if (!file) return;
 
-				var node: CanvasNode = this.getNodeFromFile(canvas, file);
+				var node: CanvasNode | null = this.getNodeFromFile(
+					canvas,
+					file
+				);
 
 				// check if the file is the same as the selected file
 
