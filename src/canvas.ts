@@ -65,7 +65,7 @@ export default class BetterCanvas extends Plugin {
 					return;
 				}
 				menu.addItem((item) => {
-					// item.setTitle("Split to " + canvas.name);
+					item.setTitle("Split to " + canvas.view.file?.name);
 					item.setIcon("open-in-app");
 					item.onClick(() => {
 						// create a new markdown file
