@@ -123,6 +123,7 @@ export default class BetterCanvas extends Plugin {
 
 		if (node) {
 			console.log("node", canvas.nodes.get(node.id));
+			return node;
 		}
 		if (!node) {
 			const selection: Set<CanvasNode> = canvas.selection;
