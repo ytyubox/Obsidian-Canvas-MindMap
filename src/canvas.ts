@@ -24,7 +24,9 @@ export default class BetterCanvas extends Plugin {
 	async onload() {
 		this.isActive = true;
 		this.registerCommands();
-	}
+			}
+		}
+	);
 
 	onunload() {
 		this.isActive = false;
@@ -92,7 +94,7 @@ export default class BetterCanvas extends Plugin {
 					});
 				});
 			}
-		
+		);
 
 		this.app.workspace.on("file-open", (file: TFile | null) => {
 			if (!this.isActive) return;
