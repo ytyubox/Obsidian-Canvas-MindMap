@@ -76,7 +76,7 @@ export default class BetterCanvas extends Plugin {
 				if (!file) return;
 				//@ts-ignore
 				if (file && node.file.path !== file.path) {
-					console.log("file is not the same as selected file");
+					console.log("file is not the same as selected file", node);
 					return;
 				}
 				menu.addItem((item) => {
