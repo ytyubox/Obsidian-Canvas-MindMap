@@ -81,7 +81,10 @@ export default class BetterCanvas extends Plugin {
 			}
 		);
 
-		this.app.workspace.on("file-open", (file: TFile | null) => {
+		this.app.workspace.on("file-open", this.fromCanvasToSplitMarkdown);
+	}
+	private fromCanvasToSplitMarkdown(file: TFile | null) {
+		file: TFile | null) => {
 			if (!this.isActive) return;
 			console.log("file-open", file);
 
@@ -108,9 +111,8 @@ export default class BetterCanvas extends Plugin {
 			leaf.openFile(file);
 			this.app.workspace.setActiveLeaf(leaf, { focus: true });
 			return;
-		});
+		}
 	}
-	private fromCanvasToSplitMarkdown(file: TFile | null) {}
 
 	private getNodeFromFile(canvas: Canvas, file: TFile): CanvasNode | null {
 		var node: CanvasNode | null = null;
