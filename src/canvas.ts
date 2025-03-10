@@ -35,11 +35,8 @@ export default class BetterCanvas extends Plugin {
 			"editor-menu",
 			(menu: Menu, editor: Editor) => {
 				if (!this.isActive) return;
-				console.log(
-					"Selection: ",
-					editor.getSelection().length,
-					"text"
-				);
+				const selection = editor.getSelection();
+				console.log("Selection: ", selection, "text");
 				if (editor.getSelection().length === 0) {
 					return new Notice("no selection");
 				}
@@ -92,10 +89,8 @@ export default class BetterCanvas extends Plugin {
 					item.onClick(() => {
 						// create a new markdown file
 						console.log("split to", canvas.view.file?.name);
-						const currentNode = this.findCurrentNode(
-							canvas,
-							file.path
-						);
+						this.createMarkdownFile(sele);
+						this.addChildNode(canvas, node);
 					});
 				});
 			}
