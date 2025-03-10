@@ -57,19 +57,7 @@ export default class BetterCanvas extends Plugin {
 					canvas,
 					file
 				);
-				if (node) {
-					console.log("node", canvas.nodes.get(node.id));
-				}
-				if (!node) {
-					const selection: Set<CanvasNode> = canvas.selection;
 
-					if (selection.size !== 0) {
-						// check if the file is the same as the selected file
-						node = Array.from(selection)[0];
-					} else {
-						node = canvas.nodes.values().next().value;
-					}
-				}
 				// check if the file is the same as the selected file
 
 				//@ts-ignore
@@ -123,7 +111,7 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 
-	private getNodeFromFile(canvas: Canvas, file: TFile) {
+	private getNodeFromFile(canvas: Canvas, file: TFile): CanvasNode {
 		var node: CanvasNode | null = null;
 		for (const i of canvas.nodes.values()) {
 			const fnode = i as CanvasFileNode;
@@ -132,6 +120,19 @@ export default class BetterCanvas extends Plugin {
 				break;
 			}
 		}
-		return node;
+
+		if (node) {
+			console.log("node", canvas.nodes.get(node.id));
+		}
+		if (!node) {
+			const selection: Set<CanvasNode> = canvas.selection;
+
+			if (selection.size !== 0) {
+				// check if the file is the same as the selected file
+				node = Array.from(selection)[0];
+			} else {
+				node = canvas.nodes.values().next().value;
+			}
+		}
 	}
 }
