@@ -43,13 +43,14 @@ export default class BetterCanvas extends Plugin {
 				if (editor.getSelection().length === 0) {
 					return new Notice("no selection");
 				}
-				const canvasLeaf = this.app.workspace.getLeavesOfType("canvas");
-				if (canvasLeaf.length !== 1) {
+				const canvasLeaves =
+					this.app.workspace.getLeavesOfType("canvas");
+				if (canvasLeaves.length !== 1) {
 					return new Notice("more than 1 canvas view");
 				}
 
 				//@ts-ignore
-				const canvas: Canvas = canvasLeaf[0].view.canvas;
+				const canvas: Canvas = canvasLeaves[0].view.canvas;
 				if (!canvas) return;
 
 				const file = this.app.workspace.getActiveFile();
@@ -82,7 +83,7 @@ export default class BetterCanvas extends Plugin {
 					console.log("file is not the same as selected file", node);
 					return;
 				}
-				console.log(canvasLeaf);
+				console.log(canvas.view.file?.path);
 				menu.addItem((item) => {
 					item.setIcon("open-in-app");
 					item.setTitle("Split to");
