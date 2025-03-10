@@ -24,9 +24,7 @@ export default class BetterCanvas extends Plugin {
 	async onload() {
 		this.isActive = true;
 		this.registerCommands();
-			}
-		}
-	);
+	}
 
 	onunload() {
 		this.isActive = false;
@@ -67,8 +65,7 @@ export default class BetterCanvas extends Plugin {
 
 					if (selection.size !== 0) {
 						// check if the file is the same as the selected file
-						const selected = Array.from(selection)[0];
-						node = selected;
+						node = Array.from(selection)[0];
 					} else {
 						node = canvas.nodes.values().next().value;
 				}
