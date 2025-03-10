@@ -125,8 +125,8 @@ export default class BetterCanvas extends Plugin {
 				// check if the file is the same as the selected file
 				node = Array.from(selection)[0];
 			} else {
-				if (canvas.nodes.size === 0) return null; 
-				}
+				if (canvas.nodes.size === 0) return null;
+
 				node = canvas.nodes.values().next().value;
 			}
 		}
