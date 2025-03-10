@@ -84,7 +84,7 @@ export default class BetterCanvas extends Plugin {
 		this.app.workspace.on("file-open", this.fromCanvasToSplitMarkdown);
 	}
 	private fromCanvasToSplitMarkdown(file: TFile | null) {
-		file: TFile | null) => {
+
 			if (!this.isActive) return;
 			console.log("file-open", file);
 
