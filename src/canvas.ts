@@ -69,7 +69,7 @@ export default class BetterCanvas extends Plugin {
 		this.app.workspace.on("file-open", (file: TFile | null) => {
 			if (!this.isActive) return;
 			console.log("file-open", file);
-			_file = file;
+
 			const canvasView = this.app.workspace.getActiveViewOfType(ItemView);
 			if (canvasView && canvasView.getViewType() !== "canvas") {
 				return;
