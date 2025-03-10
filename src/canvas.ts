@@ -112,7 +112,7 @@ export default class BetterCanvas extends Plugin {
 		const nodes = Array.from(canvas.nodes.values());
 		//@ts-ignore
 		const node = nodes.find((node) => node.file?.path === path);
-		if (!node) return;
+		if (!node) return null;
 		return node;
 	}
 }
