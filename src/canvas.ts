@@ -110,6 +110,7 @@ export default class BetterCanvas extends Plugin {
 	}
 	findCurrentNode(canvas: Canvas, path: string) {
 		const nodes = Array.from(canvas.nodes.values());
+		//@ts-ignore
 		const node = nodes.find((node) => node.file?.path === path);
 		if (!node) return;
 		return node;
