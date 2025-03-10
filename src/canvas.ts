@@ -101,8 +101,8 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 	registerAllEvents() {
-		this.app.workspace.on("quick-preview", (layout: WorkspaceWindow) => {
-			console.log("layout", layout);
+		this.app.workspace.on("quick-preview", (file: TFile, data: string) => {
+			console.log("quick-preview", file, data);
 		});
 	}
 }
