@@ -52,6 +52,8 @@ export default class BetterCanvas extends Plugin {
 				const canvas: Canvas = canvasLeaf[0].view.canvas;
 				if (!canvas) return;
 
+				const file = this.app.workspace.getActiveFile();
+				if (!file) return;
 				var node: CanvasNode | null = null;
 				for (const i of canvas.nodes.values()) {
 					const fnode = i as CanvasFileNode;
@@ -75,8 +77,6 @@ export default class BetterCanvas extends Plugin {
 				}
 				// check if the file is the same as the selected file
 
-				const file = this.app.workspace.getActiveFile();
-				if (!file) return;
 				//@ts-ignore
 				if (file && node.file.path !== file.path) {
 					console.log("file is not the same as selected file", node);
