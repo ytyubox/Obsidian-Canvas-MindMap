@@ -51,7 +51,7 @@ export default class BetterCanvas extends Plugin {
 				//@ts-ignore
 				const canvas: Canvas = canvasLeaf[0].view.canvas;
 				if (!canvas) return;
-			
+
 				var node: CanvasNode | null = null;
 				for (const i of canvas.nodes.values()) {
 					const fnode = i as CanvasFileNode;
@@ -68,8 +68,8 @@ export default class BetterCanvas extends Plugin {
 						node = Array.from(selection)[0];
 					} else {
 						node = canvas.nodes.values().next().value;
+					}
 				}
-
 				// check if the file is the same as the selected file
 				const selected = Array.from(selection)[0];
 				const file = this.app.workspace.getActiveFile();
