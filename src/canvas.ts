@@ -131,5 +131,6 @@ export default class BetterCanvas extends Plugin {
 				node = canvas.nodes.values().next().value;
 			}
 		}
+		return node;
 	}
 }
