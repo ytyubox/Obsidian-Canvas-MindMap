@@ -50,14 +50,13 @@ export default class BetterCanvas extends Plugin {
 				//@ts-ignore
 				const canvas: Canvas = canvasLeaf[0].view.canvas;
 				if (!canvas) return;
-				console.log("canvas", canvas);
-				const selection: Set<CanvasNode> = canvas.selection;
+				const canvasSelectionNode: Set<CanvasNode> = canvas.selection;
 
-				if (selection.size === 0) {
+				if (canvasSelectionNode.size === 0) {
 					return;
 				}
 				// check if the file is the same as the selected file
-				const selected = Array.from(selection)[0];
+				const selected = Array.from(canvasSelectionNode)[0];
 				const file = this.app.workspace.getActiveFile();
 				if (!file) return;
 				//@ts-ignore
