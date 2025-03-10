@@ -52,14 +52,11 @@ export default class BetterCanvas extends Plugin {
 
 				const file = this.app.workspace.getActiveFile();
 				if (!file) return;
-				var node: CanvasNode | null = null;
-				for (const i of canvas.nodes.values()) {
-					const fnode = i as CanvasFileNode;
-					if (fnode.file === file) {
-						node = fnode;
-						break;
-					}
-				}
+
+				var node: CanvasNode | null = this.getNodeFromFile(
+					canvas,
+					file
+				);
 				if (node) {
 					console.log("node", canvas.nodes.get(node.id));
 				}
@@ -124,5 +121,17 @@ export default class BetterCanvas extends Plugin {
 			this.app.workspace.setActiveLeaf(leaf, { focus: true });
 			return;
 		});
+	}
+
+	private getNodeFromFile(canvas: Canvas, file: TFile) {
+		var node: CanvasNode | null = null;
+		for (const i of canvas.nodes.values()) {
+			const fnode = i as CanvasFileNode;
+			if (fnode.file === file) {
+				node = fnode;
+				break;
+			}
+		}
+		return node;
 	}
 }
