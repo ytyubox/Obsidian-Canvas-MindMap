@@ -29,6 +29,7 @@ export default class BetterCanvas extends Plugin {
 	}
 
 	registerCommands() {
+		//@ts-ignore
 		this.app.workspace.on(
 			"editor-drop",
 			(editor: Editor, data: DataTransfer) => {
