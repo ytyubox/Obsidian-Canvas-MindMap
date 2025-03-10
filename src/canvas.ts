@@ -56,7 +56,8 @@ export default class BetterCanvas extends Plugin {
 				for (const node of canvas.nodes.values()) {
 					const fnode = node as CanvasFileNode;
 					if (fnode.file) {
-						console.log("file", fnode.file.path);
+						node = fnode;
+						break;
 					}
 				}
 
