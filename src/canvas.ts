@@ -91,7 +91,7 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 	replaceSelectionWithLink(newFile: TFile, editor: Editor) {
-		throw new Error("Method not implemented.");
+		console.log("replaceSelectionWithLink");
 	}
 	createMarkdownFile(selection: string) {
 		// create a new markdown file, file name is the first line, selection is the content
