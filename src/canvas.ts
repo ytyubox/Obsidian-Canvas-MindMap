@@ -92,7 +92,11 @@ export default class BetterCanvas extends Plugin {
 		throw new Error("Method not implemented.");
 	}
 	createMarkdownFile(selection: string) {
-		this.app.vault.create("test.md", selection);
+		// create a new markdown file, file name is the date, selection is the content
+		const date = new Date();
+		const filename = date.toISOString().split("T")[0] + ".md";
+		const newFile = this.app.vault.create(filename, selection);
+		return newFile;
 	}
 	private fromCanvasToSplitMarkdown(file: TFile | null) {
 		const canvasView = this.app.workspace.getActiveViewOfType(ItemView);
