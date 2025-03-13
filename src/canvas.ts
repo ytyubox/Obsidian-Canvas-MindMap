@@ -73,8 +73,10 @@ export default class BetterCanvas extends Plugin {
 					);
 					item.onClick(() => {
 						// create a new markdown file
-						const newFile = this.createMarkdownFile(selection);
-						this.replaceSelectionWithLink(newFile, editor);
+						const newFileTask = this.createMarkdownFile(selection);
+						newFileTask.then((newFile) => {
+							this.replaceSelectionWithLink(newFile, editor);
+						});
 						// this.addChildNode(canvas, node);
 					});
 				});
@@ -88,7 +90,7 @@ export default class BetterCanvas extends Plugin {
 			this.fromCanvasToSplitMarkdown(file);
 		});
 	}
-	replaceSelectionWithLink(newFile: void, editor: Editor) {
+	replaceSelectionWithLink(newFile: TFile, editor: Editor) {
 		throw new Error("Method not implemented.");
 	}
 	createMarkdownFile(selection: string) {
