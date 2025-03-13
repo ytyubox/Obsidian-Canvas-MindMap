@@ -96,9 +96,10 @@ export default class BetterCanvas extends Plugin {
 				newFile.path,
 				0
 			);
-
+			console.log("node added");
 			return;
 		}
+		console.log("node not added");
 		// const newNode = canvas.createFileNode(newFile);
 		// canvas.addNode(newNode);
 		// canvas.addLink(node, newNode);
