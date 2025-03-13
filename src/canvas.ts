@@ -89,7 +89,7 @@ export default class BetterCanvas extends Plugin {
 		// if the node is an existed node, then create a new node and add it as a child next to the sibling node
 		// if the node is not an existed node, then create a new node and add to the center of the canvas
 		console.log("node", node);
-		if (!node) {
+		if (node) {
 			const newNode = createChildFileNode(
 				canvas,
 				node,
