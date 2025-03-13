@@ -11,7 +11,7 @@ import {
 	CanvasFileNode,
 	EventRef,
 } from "obsidian";
-
+import { createChildFileNode } from "./utils";
 export default class BetterCanvas extends Plugin {
 	isActive: boolean = false;
 	editormenu: EventRef;
