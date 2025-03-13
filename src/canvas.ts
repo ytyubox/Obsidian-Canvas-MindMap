@@ -52,7 +52,7 @@ export default class BetterCanvas extends Plugin {
 					canvas,
 					file
 				);
-
+				console.log("node", node);
 				// check if the file is the same as the selected file
 
 				//@ts-ignore
