@@ -88,6 +88,12 @@ export default class BetterCanvas extends Plugin {
 			this.fromCanvasToSplitMarkdown(file);
 		});
 	}
+	replaceSelectionWithLink(newFile: void, editor: Editor) {
+		throw new Error("Method not implemented.");
+	}
+	createMarkdownFile(selection: string) {
+		throw new Error("Method not implemented.");
+	}
 	private fromCanvasToSplitMarkdown(file: TFile | null) {
 		const canvasView = this.app.workspace.getActiveViewOfType(ItemView);
 		if (canvasView && canvasView.getViewType() !== "canvas") {
