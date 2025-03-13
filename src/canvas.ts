@@ -94,9 +94,9 @@ export default class BetterCanvas extends Plugin {
 		throw new Error("Method not implemented.");
 	}
 	createMarkdownFile(selection: string) {
-		// create a new markdown file, file name is the date, selection is the content
-		const date = new Date();
-		const filename = date.toISOString().split("T")[0] + ".md";
+		// create a new markdown file, file name is the first line, selection is the content
+
+		const filename = selection.split("\n")[0].replace(/[^a-zA-Z0-9]/g, "");
 		const newFile = this.app.vault.create(filename, selection);
 		return newFile;
 	}
