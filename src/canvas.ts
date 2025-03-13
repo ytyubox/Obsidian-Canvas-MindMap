@@ -76,8 +76,8 @@ export default class BetterCanvas extends Plugin {
 						const newFileTask = this.createMarkdownFile(selection);
 						newFileTask.then((newFile) => {
 							this.replaceSelectionWithLink(newFile, editor);
+							this.addChildNode(canvas, node, newFile);
 						});
-						// this.addChildNode(canvas, node);
 					});
 				});
 			}
@@ -89,6 +89,18 @@ export default class BetterCanvas extends Plugin {
 
 			this.fromCanvasToSplitMarkdown(file);
 		});
+	}
+	addChildNode(canvas: Canvas, node: CanvasNode | null, newFile: TFile) {
+		// if the node is an existed node, then create a new node and add it as a child next to the sibling node
+		// if the node is not an existed node, then create a new node and add to the center of the canvas
+		if (!node) {
+			const newNode = canvas.createFileNode(newFile);
+			canvas.addNode(newNode);
+			return;
+		}
+		const newNode = canvas.createFileNode(newFile);
+		canvas.addNode(newNode);
+		canvas.addLink(node, newNode);
 	}
 	replaceSelectionWithLink(newFile: TFile, editor: Editor) {
 		const newFileLink = `[[${newFile.path}]]`;
