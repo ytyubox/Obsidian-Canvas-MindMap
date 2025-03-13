@@ -91,7 +91,9 @@ export default class BetterCanvas extends Plugin {
 		});
 	}
 	replaceSelectionWithLink(newFile: TFile, editor: Editor) {
-		console.log("replaceSelectionWithLink");
+		const newFileLink = `![[${newFile.path}]]`;
+		editor.replaceSelection(newFileLink);
+		editor.focus();
 	}
 	createMarkdownFile(selection: string) {
 		// create a new markdown file, file name is the first line, selection is the content
