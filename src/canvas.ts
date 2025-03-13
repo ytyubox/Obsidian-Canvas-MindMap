@@ -68,7 +68,6 @@ export default class BetterCanvas extends Plugin {
 					);
 					item.onClick(() => {
 						// create a new markdown file
-						return;
 						const newFileTask = this.createMarkdownFile(selection);
 						newFileTask.then((newFile) => {
 							this.replaceSelectionWithLink(newFile, editor);
