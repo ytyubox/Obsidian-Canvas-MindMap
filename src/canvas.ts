@@ -100,7 +100,7 @@ export default class BetterCanvas extends Plugin {
 		// canvas.addLink(node, newNode);
 	}
 	replaceSelectionWithLink(newFile: TFile, editor: Editor) {
-		const newFileLink = `[[${newFile.path}]]`;
+		const newFileLink = `[[${newFile.name}]]`;
 		editor.replaceSelection(newFileLink);
 		editor.focus();
 	}
