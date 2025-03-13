@@ -98,8 +98,7 @@ export default class BetterCanvas extends Plugin {
 	createMarkdownFile(selection: string) {
 		// create a new markdown file, file name is the first line, selection is the content
 
-		const filename =
-			selection.split("\n")[0].replace(/[^a-zA-Z0-9]/g, "") + ".md";
+		const filename = selection.split("\n")[0] + ".md";
 		console.log("filename", filename);
 		const newFile = this.app.vault.create(filename, selection);
 		return newFile;
